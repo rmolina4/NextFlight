@@ -24,3 +24,9 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.FlightCard {
+  border: 1px solid;
+  display: flex;
+  justify-content: space-between;
+}
