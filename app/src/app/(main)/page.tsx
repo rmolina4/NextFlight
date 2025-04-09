@@ -4,12 +4,11 @@ import Plane from "@/components/plane"
 
 
 export default function Home() {
-  return <div>
-    <SearchBar/>
-  </div>;
   return (
   <div>
-    <Plane/>
+      <Plane/>
+      <SearchBar/>
   </div>
+
   )
 }
