@@ -24,3 +24,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.studyAbroad{
+  outline: #171717;
+  background-color: red;
+}
