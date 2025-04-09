@@ -1,3 +1,10 @@
+import Plane from "@/components/plane"
+
+
 export default function Home() {
-  return <div></div>;
+  return (
+  <div>
+    <Plane/>
+  </div>
+  )
 }
