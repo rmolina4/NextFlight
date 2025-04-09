@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface FlightProps {
     From: string;
     To: string;
@@ -10,12 +8,12 @@ interface FlightProps {
 
 const FlightCard = ({From, To, Departure, Return = "", Travelers = 0}: FlightProps) => {
     return(
-        <div className={"Card"}>
-            From: {From}
-            To: {To}
-            Travelers: {Travelers}
-            Departure: {Departure}
-            Return: {Return}
+        <div className="FlightCard">
+            <p>From: {From}</p>
+            <p>To: {To}</p>
+            <p>Departure: {Departure}</p>
+            <p>Return: {Return}</p>
+            <p>Travelers: {Travelers}</p>
         </div>
     )
 }

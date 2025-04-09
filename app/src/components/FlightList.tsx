@@ -33,14 +33,12 @@ const FlightList = () => {
             Return: "X/X/X",
             Travelers: 0,
         }
-        setFlights((flight: FlightProps) => {
-            return [flight, ...Flights]
-        });
+        setFlights([newFlight, ...Flights]);
     }
 
     return(
-        <div>
-            <button onClick={handleClick}>Test</button>
+        <div className="FlightList">
+            <button onClick={handleClick}>TEST: Click to add flight</button>
             {
                 Flights.map((flightInfo)=>
                     <FlightCard

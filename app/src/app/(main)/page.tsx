@@ -1,21 +1,10 @@
 import React from 'react';
-import Flight from "@/components/FlightCard";
 import FlightList from "@/components/FlightList";
+import SearchBar from '@/components/searchbar';
 
 export default function Home() {
     return (
         <div>
-        <nav>
-          <ul>
-            <li>NextFlight</li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Flights</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Signup</a></li>
-          </ul>
-        </nav>
-  
         <div className="background-image">
           <h1>Fly Cheap</h1>
           <p>
@@ -25,6 +14,7 @@ export default function Home() {
   
         <div className="search-section">
           <h2>Find Cheap Flights</h2>
+          <SearchBar></SearchBar>
           <form action="#" method="GET">
             <label htmlFor="from">From?</label>
             <input type="text" id="from" name="from" required />
