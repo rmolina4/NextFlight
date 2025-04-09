@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface FlightProps {
     From: string;
     To: string;
@@ -6,7 +8,7 @@ interface FlightProps {
     Travelers: number;
 }
 
-const Flight = ({From, To, Departure, Return = "", Travelers = 0}: FlightProps) => {
+const FlightCard = ({From, To, Departure, Return = "", Travelers = 0}: FlightProps) => {
     return(
         <div className={"Card"}>
             From: {From}
@@ -18,4 +20,4 @@ const Flight = ({From, To, Departure, Return = "", Travelers = 0}: FlightProps) 
     )
 }
 
-export default Flight;
+export default FlightCard;
