@@ -1,4 +1,6 @@
 import React from 'react';
+import Flight from "@/components/FlightCard";
+import FlightList from "@/components/FlightList";
 
 export default function Home() {
     return (
@@ -43,6 +45,8 @@ export default function Home() {
           </form>
         </div>
   
+        <FlightList></FlightList>
+        
         <div className="study-abroad">
           <h2>Study Abroad</h2>
           <div className="study-abroad-content">
