@@ -37,22 +37,19 @@ export default function NavBar() {
   return (
     <div className="flex w-full justify-between p-2">
       <h1 className="text-2xl text-blue-500">NextFlight</h1>
-      <div className="flex gap-25">
+      <div className="flex gap-4">
         {main.map((item) => (
-          <button key={item.url} className={`py-2 px-4`}>
           <Link
             href={item.url}
+            key={item.url} className={`py-2 px-4`}
           >
             {item.text}
           </Link>
-          </button>
         ))}
         {other.map((item) => (
-          <button key={item.url} className={`py-2 px-15 rounded-full ${item.style}`}>
-          <Link key={item.url} href={item.url}>
+          <Link key={item.url} href={item.url} className={`py-2 px-15 rounded-full ${item.style}`}>
             {item.text}
           </Link>
-          </button>
         ))}
       </div>
     </div>
