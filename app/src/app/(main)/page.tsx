@@ -1,5 +1,4 @@
 import SearchBar from "../../components/searchbar";
-
 import Plane from "@/components/plane"
 
 
