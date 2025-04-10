@@ -36,7 +36,7 @@ export default function NavBar() {
 
   return (
     <div className="flex w-full justify-between p-2">
-      <h1 className="text-2xl text-blue-500">NextFlight</h1>
+      <h1 className="text-2xl text-blue-500 mt-1">NextFlight</h1>
       <div className="flex gap-4">
         {main.map((item) => (
           <Link
