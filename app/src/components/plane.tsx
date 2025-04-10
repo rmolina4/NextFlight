@@ -9,8 +9,9 @@ export default function Plane() {
       alt="Splash image"
       quality={100}
       priority
-      className="object-[0px_-1300px]"
+      className="object-[0px_-1300px] bg-gradient-to-t from-white to-transparent"
     />
+    <div className="absolute top-0 left-0 w-full h-[57vh] bg-gradient-to-t from-white to-transparent" />
   </div>
   )
 }
