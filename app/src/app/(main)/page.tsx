@@ -48,7 +48,7 @@ export default function Home() {
   return (
   <div>
       <Plane/>
-      <SearchBar/>
+      <SearchBar handleSubmit={handleSubmit}/>
       <FlightList flights={initialArray}/>
       <StudyAbroad/>
   </div>

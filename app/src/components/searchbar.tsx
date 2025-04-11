@@ -1,7 +1,12 @@
 "use client";
 import { Icon } from "@iconify/react";
+import { Flight } from "@/app/(main)/page";
 
-export default function SearchBar() {
+interface SearchBarProps {
+  handleSubmit: (user: Flight) => void;
+}
+
+export default function SearchBar(prop: SearchBarProps) {
   return (
     <div className="grid grid-rows-2 justify-center">
       <h1 className="font-bold text-xl pt-5">Find Cheap Flights</h1>
