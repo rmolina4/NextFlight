@@ -49,7 +49,7 @@ export default function NavBar() {
         {!isLoggedIn && (
           <>
             <button
-              className="py-2 px-15 rounded-full border transition-colors hover:bg-blue-400 hover:text-white"
+              className="py-2 px-15 rounded-full border transition-colors hover:bg-blue-400 hover:text-white hover:cursor-pointer"
               onClick={() => {
                 setIsLoggedIn(!isLoggedIn);
               }}
@@ -71,7 +71,7 @@ export default function NavBar() {
               onClick={() => {
                 setIsLoggedIn(!isLoggedIn);
               }}
-               className="py-2 px-4"
+               className="py-2 px-4 rounded-full border transition-colors hover:bg-blue-400 hover:text-white hover:cursor-pointer"
             >
               Logout
             </button>
