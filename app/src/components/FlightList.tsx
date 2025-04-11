@@ -1,57 +1,44 @@
-"use client"
+"use client";
 
-import FlightCard from "./FlightCard";
 import { useState } from "react";
-
-
-type FlightProps = {
-    From: string;
-    To: string;
-    Departure: string; // Departure date
-    Return: string; // Return date
-    Travelers: number;
-}
+import { Flight } from "@/app/(main)/page";
 
 const FlightList = () => {
-    const [Flights, setFlights] = useState<FlightProps[]>(
-        [
-            {
-                From: "test",
-                To: "Test",
-                Departure: "X/X/X",
-                Return: "X/X/X",
-                Travelers: 0,
-            }
-        ]
-    );
+  const [Flights, setFlights] = useState<Flight[]>([
+    {
+      from: "test",
+      to: "Test",
+      departure: "X/X/X",
+      return: "X/X/X",
+      travelers: "0",
+    },
+  ]);
 
-    const handleClick = () => {
-        const newFlight = {
-            From: "test",
-            To: "Test",
-            Departure: "X/X/X",
-            Return: "X/X/X",
-            Travelers: 0,
-        }
-        setFlights([newFlight, ...Flights]);
-    }
+  const handleClick = () => {
+    const newFlight = {
+      from: "test",
+      to: "Test",
+      departure: "X/X/X",
+      return: "X/X/X",
+      travelers: "0",
+    };
+    setFlights([newFlight, ...Flights]);
+  };
 
-    return(
-        <div className="FlightList">
-            <button onClick={handleClick}>TEST: Click to add flight</button>
-            {
-                Flights.map((flightInfo)=>
-                    <FlightCard
-                    From={flightInfo.From}
-                    To={flightInfo.To}
-                    Departure={flightInfo.Departure}
-                    Return={flightInfo.Departure}
-                    Travelers={flightInfo.Travelers}
-                    ></FlightCard>
-                )
-            }
+  return (
+    <div className="FlightList">
+      <button onClick={handleClick}>TEST: Click to add flight</button>
+      {Flights.map((flightInfo) => (
+        <div className="FlightCard">
+          <p>From: {flightInfo.from}</p>
+          <p>To: {flightInfo.to}</p>
+          <p>Departure: {flightInfo.departure}</p>
+          <p>Return: {flightInfo.return}</p>
+          <p>Travelers: {flightInfo.travelers}</p>
         </div>
-    )
-}
+      ))}
+    </div>
+  );
+};
 
-export default FlightList
+export default FlightList;
