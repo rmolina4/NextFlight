@@ -1,4 +1,3 @@
-
 export default function Abroadcards() {
     return (
         <div className="IndivCard">
