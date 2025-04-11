@@ -25,7 +25,6 @@ export default function Home() {
   <div>
       <Plane/>
       <SearchBar/>
-      <FlightList/>
       <Studyabroad/>
   </div>
   )
