@@ -15,7 +15,7 @@ export default function StudyAbroad() {
       <div className="w-[800px]">
       <h1 className="text-xl font-bold pt-5">Study Abroad Programs</h1>
       </div>
-      <div className="mx-auto w-[800px] grid grid-cols-2 gap-8 p-2">
+      <div className="w-[800px] grid grid-cols-2 gap-8 p-2">
         {programs.map((program) => (
           <Abroadcards
             key={program.title}
