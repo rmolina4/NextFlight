@@ -42,7 +42,13 @@ export default function NavBar() {
       <h1 className="text-2xl text-blue-500 mt-1">NextFlight</h1>
       <div className="flex gap-4 items-center">
         {main.map((item) => (
-          <Link href={item.url} key={item.url} className={`py-2 px-4 hover:text-blue-500 transition-colors ${pathname === item.url ? "text-blue-500" : ""}`}>
+          <Link
+            href={item.url}
+            key={item.url}
+            className={`py-2 px-4 hover:text-blue-500 transition-colors ${
+              pathname === item.url ? "text-blue-500" : ""
+            }`}
+          >
             {item.text}
           </Link>
         ))}
@@ -71,7 +77,7 @@ export default function NavBar() {
               onClick={() => {
                 setIsLoggedIn(!isLoggedIn);
               }}
-               className="py-2 px-4 rounded-full border transition-colors hover:bg-blue-400 hover:text-white hover:cursor-pointer"
+              className="py-2 px-4 rounded-full border transition-colors hover:bg-blue-400 hover:text-white hover:cursor-pointer"
             >
               Logout
             </button>
