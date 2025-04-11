@@ -7,7 +7,7 @@ export default function Studyabroad() {
             <h1 className="flex justify-evenly text-2xl font-semibold">
                 Study Abroad Programs
             </h1>
-            <div className="mx-auto w-[800px] h-[350px] bg-[#c6c6c1] grid grid-cols-2">
+            <div className="mx-auto w-[800px] h-[350px] bg-[#F9EEEE] grid grid-cols-2">
                 <Abroadcards />
                 <Abroadcards />
                 <Abroadcards />
