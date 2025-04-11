@@ -5,7 +5,9 @@ import mongoose from "mongoose";
 import SavedFlight from "@/models/flightSchema";
 
 export async function GET(request: NextRequest) {
-    // Handle GET requests
+    await connectMongoDB();
+    const flights = await SavedFlight.find();
+    return NextResponse.json({ flights });
 }
 
 export async function POST(request: NextRequest) {
