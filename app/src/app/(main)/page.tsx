@@ -1,9 +1,30 @@
-import Image from 'next/image';
-import plane from '@/../public/images/plane.jpg';
+"use client";
+
+import SearchBar from "../../components/searchbar";
+import Plane from "@/components/plane"
+import {useState } from "react";
 import Studyabroad from "../../components/studyabroad";
 
+interface Flight {
+  from: string,
+  to: string,
+  departure: string,
+  return: string,
+  traverlers: string,
+}
+
 export default function Home() {
+  const [flights, setFlights] = useState<Flight[]>([]);
+
+  const handleSubmit = (flight : Flight) => {
+    setFlights([...flights, flight]);
+  }
+
+  return (
   <div>
-    <Studyabroad/>
+      <Plane/>
+      <SearchBar/>
+      <Studyabroad/>
   </div>
+  )
 }
