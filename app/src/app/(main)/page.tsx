@@ -7,12 +7,12 @@ import StudyAbroad from "@/components/studyAbroad";
 import FlightList from "@/components/flightList";
 
 export interface Flight {
-  from: string,
-  to: string,
-  departure: string,
-  return: string,
-  travelers: string,
-  key: number,
+  from: string;
+  to: string;
+  departure: string;
+  return: string;
+  travelers: string;
+  key: number;
 }
 
 export default function Home() {
@@ -23,11 +23,11 @@ export default function Home() {
   };
 
   return (
-  <div>
-      <Plane/>
-      <SearchBar handleSubmit={handleSubmit}/>
-      <FlightList flights={flights}/>
-      <StudyAbroad/>
-  </div>
-  )
+    <div>
+      <Plane />
+      <SearchBar handleSubmit={handleSubmit} />
+      {flights.length != 0 && <FlightList flights={flights} />}
+      <StudyAbroad />
+    </div>
+  );
 }
