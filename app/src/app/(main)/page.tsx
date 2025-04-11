@@ -5,6 +5,7 @@ import Plane from "@/components/plane";
 import { useState } from "react";
 import StudyAbroad from "@/components/studyAbroad";
 import FlightList from "@/components/flightList";
+import connectMongoDB from "@/libs/mongodb";
 
 export interface Flight {
   from: string;
@@ -17,6 +18,7 @@ export interface Flight {
 
 export default function Home() {
   const [flights, setFlights] = useState<Flight[]>([]);
+  connectMongoDB();
 
   const handleSubmit = (flight: Flight) => {
     setFlights([...flights, flight]);
