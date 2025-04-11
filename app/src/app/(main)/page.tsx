@@ -3,8 +3,8 @@
 import SearchBar from "../../components/searchbar";
 import Plane from "@/components/plane";
 import { useState } from "react";
-import StudyAbroad from "@/components/studyabroad";
-import FlightList from "@/components/FlightList";
+import StudyAbroad from "@/components/studyAbroad";
+import FlightList from "@/components/flightList";
 
 export interface Flight {
   from: string,
@@ -49,7 +49,7 @@ export default function Home() {
   <div>
       <Plane/>
       <SearchBar handleSubmit={handleSubmit}/>
-      <FlightList flights={initialArray}/>
+      <FlightList flights={flights}/>
       <StudyAbroad/>
   </div>
   )
