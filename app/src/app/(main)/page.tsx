@@ -6,12 +6,12 @@ import {useState } from "react";
 import Studyabroad from "../../components/studyabroad";
 import FlightList from "@/components/FlightList";
 
-interface Flight {
+export interface Flight {
   from: string,
   to: string,
   departure: string,
   return: string,
-  traverlers: string,
+  travelers: string,
 }
 
 export default function Home() {

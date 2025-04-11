@@ -1,7 +1,7 @@
-import Studyabroad from "@/components/studyabroad";
+import FlightList from "@/components/FlightList";
 
 export default function Flights() {
   return <div>
-    <Studyabroad/>
+    <FlightList/>
   </div>;
 }
