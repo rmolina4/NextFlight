@@ -13,10 +13,10 @@ export default function Studyabroad() {
     return (
         // Title of the study abroad program portion and its container
         <div>
-            <h1 className="flex justify-evenly text-2xl font-semibold">
+            <h1 className="relative left-88 text-2xl font-semibold pt-5">
                 Study Abroad Programs
             </h1>
-            <div className="mx-auto w-[800px] bg-[#F9EEEE] grid grid-cols-2 gap-4 p-4 rounded-lg">
+            <div className="mx-auto w-[800px] bg-white grid grid-cols-2 gap-4 p-4 rounded-lg">
                 {programs.map((program, index) => (
                     <Abroadcards key={index} title={program.title} location={program.location} />
                 ))}
