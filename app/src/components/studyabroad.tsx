@@ -11,14 +11,14 @@ export default function StudyAbroad() {
   ];
 
   return (
-    <div>
-      <h1 className="flex justify-evenly text-2xl font-semibold">
-        Study Abroad Programs
-      </h1>
-      <div className="mx-auto w-[800px] grid grid-cols-2 gap-4 p-4 rounded-lg">
-        {programs.map((program, index) => (
+    <div className="flex flex-col items-center">
+      <div className="w-[800px]">
+      <h1 className="text-xl font-bold pt-5">Study Abroad Programs</h1>
+      </div>
+      <div className="mx-auto w-[800px] grid grid-cols-2 gap-8 p-2">
+        {programs.map((program) => (
           <Abroadcards
-            key={index}
+            key={program.title}
             title={program.title}
             location={program.location}
           />
