@@ -50,3 +50,8 @@ body {
     justify-content: center;
     margin: 0px 630px 0px 0px;
   }
+  .FlightCard {
+    border: 1px solid;
+    display: flex;
+    justify-content: space-between;
+  }
