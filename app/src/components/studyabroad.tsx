@@ -15,7 +15,7 @@ export default function StudyAbroad() {
       <h1 className="flex justify-evenly text-2xl font-semibold">
         Study Abroad Programs
       </h1>
-      <div className="mx-auto w-[800px] bg-[#F9EEEE] grid grid-cols-2 gap-4 p-4 rounded-lg">
+      <div className="mx-auto w-[800px] grid grid-cols-2 gap-4 p-4 rounded-lg">
         {programs.map((program, index) => (
           <Abroadcards
             key={index}
