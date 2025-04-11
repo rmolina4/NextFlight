@@ -4,13 +4,14 @@ import SearchBar from "../../components/searchbar";
 import Plane from "@/components/plane"
 import {useState } from "react";
 import Studyabroad from "../../components/studyabroad";
+import FlightList from "@/components/FlightList";
 
-interface Flight {
+export interface Flight {
   from: string,
   to: string,
   departure: string,
   return: string,
-  traverlers: string,
+  travelers: string,
 }
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
   <div>
       <Plane/>
       <SearchBar/>
+      <FlightList/>
       <Studyabroad/>
   </div>
   )
