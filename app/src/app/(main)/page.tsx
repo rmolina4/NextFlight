@@ -12,6 +12,7 @@ export interface Flight {
   departure: string,
   return: string,
   travelers: string,
+  key: number,
 }
 
 export default function Home() {
