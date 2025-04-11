@@ -12,6 +12,7 @@ export interface Flight {
   departure: string,
   return: string,
   travelers: string,
+  key: number,
 }
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
   <div>
       <Plane/>
       <SearchBar/>
+      <FlightList/>
       <Studyabroad/>
   </div>
   )
