@@ -24,3 +24,29 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.abroadContainer{
+  margin: auto;
+  width:800px;
+  height:350px;
+  background-color:rgb(198, 198, 193);
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+  .IndivCard{
+    display: flex;
+    margin:20px;
+    background-color:#333;
+    padding:20px;
+    border-radius:10px;
+    color:#fff;
+    align-items:center;
+    justify-content:space-between;
+    font-family:nunito-sans;
+    max-height: 65px;
+    max-width: 300px;
+  }
+  .AbroadTitle{
+    display:flex;
+    justify-content: center;
+    margin: 0px 630px 0px 0px;
+  }

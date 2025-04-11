@@ -1,3 +1,7 @@
+import Studyabroad from "@/components/studyabroad";
+
 export default function Flights() {
-  return <div></div>;
+  return <div>
+    <Studyabroad/>
+  </div>;
 }
