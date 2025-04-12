@@ -43,7 +43,7 @@ export default function Flights() {
     <div className="relative">
       <Plane />
       <div className="absolute top-0 w-full flex justify-center items-center">
-        <FlightList flights={flights} flightsPage={true} onDeleteFlight={onDeleteFlight} />
+        <FlightList setFlights={setFlights} flights={flights} flightsPage={true} onDeleteFlight={onDeleteFlight} />
       </div>
     </div>
   );
