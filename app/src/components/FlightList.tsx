@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Flight } from "@/app/(main)/page";
 import { Icon } from "@iconify/react";
+import { POST } from "@/app/api/flights/route"
 
 interface FlightListProps {
   flights: Flight[];
