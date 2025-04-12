@@ -4,7 +4,7 @@ import SearchBar from "../../components/searchbar";
 import Plane from "@/components/plane";
 import { useState } from "react";
 import StudyAbroad from "@/components/studyAbroad";
-import FlightList from "@/components/flightList";
+import FlightList from "@/components/FlightList";
 
 export interface Flight {
   from: string;
