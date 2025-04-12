@@ -35,11 +35,15 @@ const initialArray = [
 export default function Flights() {
   const [flights, setFlights] = useState<Flight[]>(initialArray);
 
+  const onDeleteFlight = (key: number) => {
+    setFlights(flights.filter((flight) => flight.key !== key));
+  };
+
   return (
     <div className="relative">
       <Plane />
       <div className="absolute top-0 w-full flex justify-center items-center">
-        <FlightList flights={flights} />
+        <FlightList flights={flights} flightsPage={true} onDeleteFlight={onDeleteFlight} />
       </div>
     </div>
   );
