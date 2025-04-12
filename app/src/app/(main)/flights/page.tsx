@@ -11,7 +11,7 @@ const initialArray = [
     to: "Spain",
     departure: "5/5/2025",
     return: "6/5/2025",
-    travelers: "1",
+    seat: "1",
     key: 0,
   },
   {
@@ -19,7 +19,7 @@ const initialArray = [
     to: "France",
     departure: "7/7/2025",
     return: "8/7/2025",
-    travelers: "2",
+    seat: "2",
     key: 1,
   },
   {
@@ -27,7 +27,7 @@ const initialArray = [
     to: "Germany",
     departure: "9/9/2025",
     return: "10/9/2025",
-    travelers: "3",
+    seat: "3",
     key: 2,
   },
 ];

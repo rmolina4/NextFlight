@@ -11,7 +11,7 @@ export interface Flight {
   to: string;
   departure: string;
   return: string;
-  travelers: string;
+  seat: string;
   key: number;
 }
 
@@ -26,7 +26,7 @@ export default function Home() {
     <div>
       <Plane />
       <SearchBar handleSubmit={handleSubmit} />
-      {flights.length != 0 && <FlightList flights={flights} />}
+      {flights.length != 0 && <FlightList flights={flights} setFlights={setFlights}/>}
       <StudyAbroad />
     </div>
   );

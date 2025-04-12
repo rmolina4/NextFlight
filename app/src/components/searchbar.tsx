@@ -87,7 +87,7 @@ export default function SearchBar(prop: SearchBarProps) {
               to: toInput,
               departure: departureInput,
               return: returnInput,
-              travelers: travelerInput,
+              seat: "9A",
               key: count,
             };
             setCount(count + 1);
