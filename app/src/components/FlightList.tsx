@@ -6,11 +6,12 @@ import { Icon } from "@iconify/react";
 
 interface FlightListProps {
   flights: Flight[];
+  className?: string,
 }
 
 const FlightList = (prop: FlightListProps) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className={`flex flex-col items-center ${prop.className}`}>
       <div className="w-[800px]">
         <h1 className="text-xl font-bold pt-5">Results</h1>
       </div>
@@ -18,7 +19,7 @@ const FlightList = (prop: FlightListProps) => {
         {prop.flights.map((flight) => (
           <div
             key={flight.key}
-            className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)]"
+            className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white"
           >
             <p className="flex-1 p-2 m-1">From: {flight.from}</p>
             <p className="flex-1 p-2 m-1">To: {flight.to}</p>
