@@ -92,6 +92,11 @@ export default function SearchBar(prop: SearchBarProps) {
               key: count,
             };
             setCount(count + 1);
+            setFromInput('');
+            setToInput('');
+            setDepartureInput('');
+            setReturnInput('');
+            setTravelerInput('');
             prop.handleSubmit(newFlight);
           }}
         >
