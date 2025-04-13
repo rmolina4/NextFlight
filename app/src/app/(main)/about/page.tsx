@@ -15,7 +15,7 @@ export default function About() {
 
 
   return <div className="min-h-screen flex flex-col">
-    <Plane aboutPage={true}/>
+    <Plane/>
     <div className="flex justify-center items-center flex-1 mb-20 gap-4">
       <div className="flex-1 flex flex-col justify-center items-center text-center border border-black p-5 rounded-lg border-2 mx-4">
         <div className="flex justify-center items-center">

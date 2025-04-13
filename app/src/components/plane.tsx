@@ -9,7 +9,7 @@ export default function Plane() {
         alt="Splash image"
         quality={100}
         priority
-        className="xl:object-[0px_-1120px] 2xl:object-[0px_-250px]"
+        className="xl:object-[0px_-230px] 2xl:object-[0px_-250px]"
       />
       <div className="absolute inset-0 bg-[linear-gradient(to_top,white_5%,transparent_40%)]" />
       <h1 className="absolute top-40 left-25 text-white text-6xl font-bold drop-shadow-lg">
