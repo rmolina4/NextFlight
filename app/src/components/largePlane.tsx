@@ -9,7 +9,7 @@ export default function Plane() {
         alt="Splash image"
         quality={100}
         priority
-        className="xl:object-[0px_-1140px] 2xl:object-[0px_-1300px]"
+        className="xl:object-[0px_-1140px] 2xl:object-[0px_-250px]"
       />
       <h1 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl font-bold drop-shadow-lg text-white">
         About Us
