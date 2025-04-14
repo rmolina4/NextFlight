@@ -4,7 +4,7 @@ interface savedFlight extends Document {
   from: string;
   to: string;
   departure: string;
-  return: string;
+  arrival: string;
   travelers: string;
   key: number;
 }
@@ -22,7 +22,7 @@ const flightSchema = new Schema<savedFlight>({
         type: String,
         required: true,
     },
-    return: {
+    arrival: {
         type: String,
         required: true,
     },

@@ -38,7 +38,7 @@ const FlightList = (props: FlightListProps) => {
             <p className="grow p-2 m-1">From: {flight.from}</p>
             <p className="grow p-2 m-1">To: {flight.to}</p>
             <p className="grow p-2 m-1">Departure: {flight.departure}</p>
-            <p className="grow p-2 m-1">Return: {flight.return}</p>
+            <p className="grow p-2 m-1">Return: {flight.arrival}</p>
             <div className="grow p-2 m-1">
               <div className="flex items-center justify-center gap-2">
                 <p>Seat: {flight.seat}</p>

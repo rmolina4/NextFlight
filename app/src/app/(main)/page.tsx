@@ -2,16 +2,10 @@
 import Plane from "@/components/largePlane";
 import { Icon } from '@iconify/react';
 import { useEffect } from "react";
-import SearchBar from "../../components/searchbar";
-import Plane from "@/components/plane";
-import { useState } from "react";
-import StudyAbroad from "@/components/studyAbroad";
-import FlightList from "@/components/FlightList";
 import connectMongoDB from "@/libs/mongodb";
 
 
 export default function Home() {
-  const [flights, setFlights] = useState<Flight[]>([]);
   connectMongoDB();
 
   useEffect(() => {
