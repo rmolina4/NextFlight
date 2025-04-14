@@ -1,19 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { Flight } from "@/app/(main)/page";
+import { Flight } from "@/app/(main)/search/page";
 import { Icon } from "@iconify/react";
+import SeatMenu from "./seatMenu";
 import { POST } from "@/app/api/flights/route"
 
 interface FlightListProps {
   flights: Flight[];
-  className?: string,
-  flightsPage?: boolean
+  className?: string;
+  flightsPage?: boolean;
   onDeleteFlight?: (key: number) => void;
+  setFlights: React.Dispatch<React.SetStateAction<Flight[]>>;
+  isLoggedIn: boolean;
 }
 
-const FlightList = ( props: FlightListProps) => {
-  
+const FlightList = (props: FlightListProps) => {
+  const setSeat = (key: number, newSeat: string) => {
+    props.setFlights((prevFlights) =>
+      prevFlights.map((flight) =>
+        flight.key === key ? { ...flight, seat: newSeat } : flight
+      )
+    );
+  };
+
   return (
     <div className={`flex flex-col items-center ${props.className}`}>
       <div className="w-[800px]">
@@ -25,17 +35,28 @@ const FlightList = ( props: FlightListProps) => {
             key={flight.key}
             className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white"
           >
-            <p className="flex-1 p-2 m-1">From: {flight.from}</p>
-            <p className="flex-1 p-2 m-1">To: {flight.to}</p>
-            <p className="flex-1 p-2 m-1">Departure: {flight.departure}</p>
-            <p className="flex-1 p-2 m-1">Return: {flight.return}</p>
-            <p className="flex-1 p-2 m-1">Travelers: {flight.travelers}</p>
+            <p className="grow p-2 m-1">From: {flight.from}</p>
+            <p className="grow p-2 m-1">To: {flight.to}</p>
+            <p className="grow p-2 m-1">Departure: {flight.departure}</p>
+            <p className="grow p-2 m-1">Return: {flight.return}</p>
+            <div className="grow p-2 m-1">
+              <div className="flex items-center justify-center gap-2">
+                <p>Seat: {flight.seat}</p>
+                <SeatMenu
+                  setSeat={(seat: string) => setSeat(flight.key, seat)}
+                />
+              </div>
+            </div>
             <div className="flex items-center justify-center pr-4">
-              <Icon
-                icon={props.flightsPage ? "tabler:trash" : "tabler:plus"}
-                className="text-2xl hover:cursor-pointer"
-                onClick={() => props.onDeleteFlight && props.onDeleteFlight(flight.key)}
-              />
+              {props.isLoggedIn && (
+                <Icon
+                  icon={props.flightsPage ? "tabler:trash" : "tabler:plus"}
+                  className="text-2xl hover:cursor-pointer"
+                  onClick={() =>
+                    props.onDeleteFlight && props.onDeleteFlight(flight.key)
+                  }
+                />
+              )}
             </div>
           </div>
         ))}

@@ -15,13 +15,14 @@ export default function NavBar() {
       url: "/",
     },
     {
+      text: "Search",
+      url: "/search",
+    },
+    {
       text: "Flights",
       url: "/flights",
     },
-    {
-      text: "About",
-      url: "/about",
-    },
+
   ];
 
   const other = [

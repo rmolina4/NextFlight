@@ -1,6 +1,6 @@
 "use client";
 import { Icon } from "@iconify/react";
-import { Flight } from "@/app/(main)/page";
+import { Flight } from "@/app/(main)/search/page";
 import { useState } from "react";
 
 interface SearchBarProps {
@@ -38,7 +38,7 @@ export default function SearchBar(prop: SearchBarProps) {
   return (
     <div className="grid grid-rows-2 justify-center">
       <h1 className="font-bold text-xl pt-5">Find Cheap Flights</h1>
-      <div className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)]">
+      <form className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)]">
         <input
           type="text"
           placeholder="From"
@@ -80,21 +80,29 @@ export default function SearchBar(prop: SearchBarProps) {
         />
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded m-2 hover:bg-blue-600 hover:cursor-pointer"
-          onClick={(e: any) => {
+          type="submit"
+          onClick={(e: React.FormEvent) => {
             e.preventDefault();
             const newFlight = {
               from: fromInput,
               to: toInput,
               departure: departureInput,
               return: returnInput,
-              travelers: travelerInput,
+              seat: "9A",
               key: count,
             };
             setCount(count + 1);
+            setFromInput('');
+            setToInput('');
+            setDepartureInput('');
+            setReturnInput('');
+            setTravelerInput('');
             prop.handleSubmit(newFlight);
           }}
-        >Search</button>
-      </div>
+        >
+          Search
+        </button>
+      </form>
     </div>
   );
 }

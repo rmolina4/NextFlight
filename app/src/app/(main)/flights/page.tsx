@@ -3,7 +3,8 @@
 import FlightList from "@/components/FlightList";
 import Plane from "@/components/planeBG";
 import { useState } from "react";
-import { Flight } from "../page";
+import { Flight } from "../search/page";
+import { redirect } from "next/navigation";
 
 const initialArray = [
   {
@@ -11,7 +12,7 @@ const initialArray = [
     to: "Spain",
     departure: "5/5/2025",
     return: "6/5/2025",
-    travelers: "1",
+    seat: "1",
     key: 0,
   },
   {
@@ -19,7 +20,7 @@ const initialArray = [
     to: "France",
     departure: "7/7/2025",
     return: "8/7/2025",
-    travelers: "2",
+    seat: "2",
     key: 1,
   },
   {
@@ -27,13 +28,18 @@ const initialArray = [
     to: "Germany",
     departure: "9/9/2025",
     return: "10/9/2025",
-    travelers: "3",
+    seat: "3",
     key: 2,
   },
 ];
 
 export default function Flights() {
   const [flights, setFlights] = useState<Flight[]>(initialArray);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // manually change
+
+  if(!isLoggedIn) {
+    redirect('/login');
+  }
 
   const onDeleteFlight = (key: number) => {
     setFlights(flights.filter((flight) => flight.key !== key));
@@ -43,7 +49,7 @@ export default function Flights() {
     <div className="relative">
       <Plane />
       <div className="absolute top-0 w-full flex justify-center items-center">
-        <FlightList flights={flights} flightsPage={true} onDeleteFlight={onDeleteFlight} />
+        <FlightList setFlights={setFlights} flights={flights} flightsPage={true} onDeleteFlight={onDeleteFlight} isLoggedIn={true} />
       </div>
     </div>
   );
