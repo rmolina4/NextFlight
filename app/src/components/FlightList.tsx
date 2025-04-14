@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Flight } from "@/app/(main)/search/page";
 import { Icon } from "@iconify/react";
 import SeatMenu from "./seatMenu";
+import { POST } from "@/app/api/flights/route"
 
 interface FlightListProps {
   flights: Flight[];
