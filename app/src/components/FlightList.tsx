@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Flight } from "@/app/(main)/search/page";
 import { Icon } from "@iconify/react";
 import SeatMenu from "./seatMenu";
-import { POST } from "@/app/api/flights/route"
+import { POSTFromPage } from "@/app/api/flights/route"
+import { deprecate } from "util";
 
 interface FlightListProps {
   flights: Flight[];
@@ -48,12 +49,22 @@ const FlightList = (props: FlightListProps) => {
               </div>
             </div>
             <div className="flex items-center justify-center pr-4">
-              {props.isLoggedIn && (
+              {/*props.isLoggedIn && */ (
                 <Icon
                   icon={props.flightsPage ? "tabler:trash" : "tabler:plus"}
                   className="text-2xl hover:cursor-pointer"
-                  onClick={() =>
-                    props.onDeleteFlight && props.onDeleteFlight(flight.key)
+                  onClick={() => {
+                    const FlightProps = {
+                      from: flight.from,
+                      to: flight.to,
+                      departure: flight.departure,
+                      arrival: flight.arrival,
+                      seat: "1",
+                      key: flight.key,
+                    }
+                    //POSTFromPage(FlightProps); // Uncommenting this breaks page. Need to figure out how to fix this
+                  }
+                    //props.onDeleteFlight && props.onDeleteFlight(flight.key)
                   }
                 />
               )}

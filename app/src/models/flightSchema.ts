@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, Model, mongo, SaveOptions } from "mongoose";
 
-interface savedFlight extends Document {
+interface SavedFlight extends Document {
   from: string;
   to: string;
   departure: string;
@@ -9,7 +9,7 @@ interface savedFlight extends Document {
   key: number;
 }
 
-const flightSchema = new Schema<savedFlight>({
+const flightSchema = new Schema<SavedFlight>({
     from: {
         type: String,
         required: true,
@@ -35,5 +35,5 @@ const flightSchema = new Schema<savedFlight>({
     },
 });
 
-const SavedFlight: Model<savedFlight> = mongoose.models.savedFlight || mongoose.model<savedFlight>("SavedFlight", flightSchema);
+const SavedFlight: Model<SavedFlight> = mongoose.models.SavedFlight || mongoose.model<SavedFlight>("SavedFlight", flightSchema);
 export default SavedFlight;
