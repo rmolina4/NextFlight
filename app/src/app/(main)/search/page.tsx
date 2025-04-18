@@ -5,12 +5,13 @@ import Plane from "@/components/plane";
 import { useState } from "react";
 import StudyAbroad from "@/components/studyAbroad";
 import FlightList from "@/components/FlightList";
+import { POST } from "@/app/api/flights/route";
 
 export interface Flight {
   from: string;
   to: string;
   departure: string;
-  return: string;
+  arrival: string;
   seat: string;
   key: number;
 }
@@ -21,6 +22,7 @@ export default function Search() {
 
   const handleSubmit = (flight: Flight) => {
     setFlights([...flights, flight]);
+
   };
 
   return (

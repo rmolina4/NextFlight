@@ -87,7 +87,7 @@ export default function SearchBar(prop: SearchBarProps) {
               from: fromInput,
               to: toInput,
               departure: departureInput,
-              return: returnInput,
+              arrival: returnInput,
               seat: "9A",
               key: count,
             };

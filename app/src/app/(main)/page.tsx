@@ -2,8 +2,11 @@
 import Plane from "@/components/largePlane";
 import { Icon } from '@iconify/react';
 import { useEffect } from "react";
+import connectMongoDB from "@/libs/mongodb";
+
 
 export default function Home() {
+  connectMongoDB();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -12,7 +15,6 @@ export default function Home() {
       document.body.style.overflow = "";
     };
   }, []);
-
 
   return <div className="min-h-screen flex flex-col">
     <Plane/>
