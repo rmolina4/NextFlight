@@ -29,7 +29,7 @@ export default function Search() {
     <div>
       <Plane />
       <SearchBar handleSubmit={handleSubmit} />
-      {flights.length != 0 && <FlightList flights={flights} setFlights={setFlights} isLoggedIn={isLoggedIn}/>}
+      {flights.length != 0 && <FlightList flights={flights} setFlights={setFlights} isLoggedIn={isLoggedIn} />}
       <StudyAbroad />
     </div>
   );
