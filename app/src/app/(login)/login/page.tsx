@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { doCredentialLogin } from "../../actions/index";
 
 export default function Login() {
   const router = useRouter();
@@ -12,14 +13,11 @@ export default function Login() {
       const username = formData.get("username") as string | null;
       const password = formData.get("password") as string | null;
 
-      if (!username || !password) {
-        throw new Error("All fields are required");
-      }
       const response = await doCredentialLogin(formData);
 
       if (response?.error) {
         console.error(response.error);
-        setError(response.error.message || "An error occurred");
+        setError(response.error.message || "Login Failed. Please use valid credentials.");
       } else {
         router.push("/");
       }

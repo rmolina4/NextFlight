@@ -4,10 +4,8 @@ import { Icon } from '@iconify/react';
 import { useEffect } from "react";
 import connectMongoDB from "@/libs/mongodb";
 
-
 export default function Home() {
   connectMongoDB();
-
   useEffect(() => {
     document.body.style.overflow = "hidden";
 

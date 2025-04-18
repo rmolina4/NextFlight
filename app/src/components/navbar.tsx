@@ -1,26 +1,16 @@
 "use client";
 
-import { Session } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 
-interface NavBarProps {
-  session: Session | null;
-}
 
-export default function NavBar( { session }: NavBarProps) {
+export default function NavBar() {
   const pathname = usePathname();
-  const [isLoggedIn, setIsLoggedIn] = useState(!!session?.user);
+  const { data: session } = useSession();
 
-  useEffect(() => {
-    setIsLoggedIn(!!session?.user);
-  }, [session]);
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
+  const isLoggedIn = !!session?.user;
 
   const main = [
     {
@@ -68,14 +58,12 @@ export default function NavBar( { session }: NavBarProps) {
         ))}
         {!isLoggedIn && (
           <>
-            <button
+            <Link
               className="py-2 px-15 rounded-full border transition-colors hover:bg-blue-400 hover:text-white hover:cursor-pointer"
-              onClick={() => {
-                setIsLoggedIn(!isLoggedIn);
-              }}
+              href="/login"
             >
               Login
-            </button>
+            </Link>
             <Link
               href="/signup"
               className="py-2 px-15 rounded-full bg-blue-300 transition-colors hover:bg-blue-400 hover:text-white"
@@ -88,7 +76,7 @@ export default function NavBar( { session }: NavBarProps) {
           <>
             <button
               key={"logout"}
-              onClick={ handleLogout }
+              onClick={() => signOut({ callbackUrl: "/" })}
               className="py-2 px-4 rounded-full border transition-colors hover:bg-blue-400 hover:text-white hover:cursor-pointer"
             >
               Logout

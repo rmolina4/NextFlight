@@ -4,7 +4,14 @@ import { useRouter } from "next/navigation";
 
 export default function Signup() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push('/');
+    }
+  }, [isLoggedIn, router]);
   
   async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -14,26 +21,28 @@ export default function Signup() {
       const email = formData.get("email") as string | null;
       const password = formData.get("password") as string | null;
 
-      if (!username || !email || !password) {
-        throw new Error("All fields are required");
-      }
-      const response = await doCredentialLogin(formData);
+      const response = await fetch("http://localhost:3000/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+      const data = await response.json();
 
-      if (response?.error) {
-        console.error(response.error);
-        setError(response.error.message || "An error occurred");
+      if (response.status != 201) {
+        setError(data.message || "An error occurred");
+        console.error(error);
       } else {
-        router.push("/");
+        setIsLoggedIn(true);
       }
     } catch (e: any) {
-      console.error(e);
       setError(e.message || "An error occurred");
+      console.error(error);
+
     }
   };
   
-  function setError(err: any) {
-    throw new Error(err);
-  }
   
   
     return (
