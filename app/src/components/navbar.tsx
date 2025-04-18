@@ -1,13 +1,26 @@
 "use client";
 
+import { Session } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function NavBar() {
+interface NavBarProps {
+  session: Session | null;
+}
+
+export default function NavBar( { session }: NavBarProps) {
   const pathname = usePathname();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!session?.user);
+
+  useEffect(() => {
+    setIsLoggedIn(!!session?.user);
+  }, [session]);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
 
   const main = [
     {
@@ -75,9 +88,7 @@ export default function NavBar() {
           <>
             <button
               key={"logout"}
-              onClick={() => {
-                setIsLoggedIn(!isLoggedIn);
-              }}
+              onClick={ handleLogout }
               className="py-2 px-4 rounded-full border transition-colors hover:bg-blue-400 hover:text-white hover:cursor-pointer"
             >
               Logout
