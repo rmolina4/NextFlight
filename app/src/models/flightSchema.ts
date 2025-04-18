@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model, mongo, SaveOptions } from "mongoose";
+import mongoose, { Schema, Document, Model, } from "mongoose";
 
 interface SavedFlight extends Document {
   from: string;
