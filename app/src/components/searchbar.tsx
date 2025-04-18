@@ -1,10 +1,10 @@
 "use client";
 import { Icon } from "@iconify/react";
-import { Flight } from "@/app/(main)/search/page";
+import { Search } from "@/app/(main)/search/page";
 import { useState } from "react";
 
 interface SearchBarProps {
-  handleSubmit: (user: Flight) => void;
+  handleSubmit: (user: Search) => void;
 }
 
 export default function SearchBar(prop: SearchBarProps) {
@@ -12,8 +12,6 @@ export default function SearchBar(prop: SearchBarProps) {
   const [toInput, setToInput] = useState("");
   const [departureInput, setDepartureInput] = useState("");
   const [returnInput, setReturnInput] = useState("");
-  const [travelerInput, setTravelerInput] = useState("");
-  const [count, setCount] = useState(3);
 
   function handleFromChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFromInput(e.target.value);
@@ -29,10 +27,6 @@ export default function SearchBar(prop: SearchBarProps) {
 
   function handleReturnChange(e: React.ChangeEvent<HTMLInputElement>) {
     setReturnInput(e.target.value);
-  }
-
-  function handleTravelerChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setTravelerInput(e.target.value);
   }
 
   return (
@@ -71,33 +65,22 @@ export default function SearchBar(prop: SearchBarProps) {
           onChange={handleReturnChange}
           value={returnInput}
         />
-        <input
-          type="text"
-          placeholder="Travelers"
-          className="p-2 w-24"
-          onChange={handleTravelerChange}
-          value={travelerInput}
-        />
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded m-2 hover:bg-blue-600 hover:cursor-pointer"
           type="submit"
           onClick={(e: React.FormEvent) => {
             e.preventDefault();
-            const newFlight = {
-              from: fromInput,
-              to: toInput,
-              departure: departureInput,
-              arrival: returnInput,
-              seat: "9A",
-              key: count,
+            const newSearch = {
+              origin: fromInput,
+              destination: toInput,
+              departureDate: departureInput,
+              returnDate: returnInput,
             };
-            setCount(count + 1);
             setFromInput('');
             setToInput('');
             setDepartureInput('');
             setReturnInput('');
-            setTravelerInput('');
-            prop.handleSubmit(newFlight);
+            prop.handleSubmit(newSearch);
           }}
         >
           Search

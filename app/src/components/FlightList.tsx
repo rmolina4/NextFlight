@@ -36,10 +36,11 @@ const FlightList = (props: FlightListProps) => {
             key={flight.key}
             className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white"
           >
-            <p className="grow p-2 m-1">From: {flight.from}</p>
-            <p className="grow p-2 m-1">To: {flight.to}</p>
-            <p className="grow p-2 m-1">Departure: {flight.departure}</p>
-            <p className="grow p-2 m-1">Return: {flight.arrival}</p>
+            <p className="grow p-2 m-1">From: {flight.origin}</p>
+            <p className="grow p-2 m-1">To: {flight.destination}</p>
+            <p className="grow p-2 m-1">Departure: {flight.departureDate}</p>
+            <p className="grow p-2 m-1">Return: {flight.returnDate}</p>
+            {/* <p className="grow p-2 m-1">Price: {flight.price.total}</p> */}
             <div className="grow p-2 m-1">
               <div className="flex items-center justify-center gap-2">
                 <p>Seat: {flight.seat}</p>
