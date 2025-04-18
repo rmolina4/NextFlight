@@ -49,7 +49,7 @@ const FlightList = (props: FlightListProps) => {
               </div>
             </div>
             <div className="flex items-center justify-center pr-4">
-              {/*props.isLoggedIn && */ (
+              {props.isLoggedIn &&  (
                 <Icon
                   icon={props.flightsPage ? "tabler:trash" : "tabler:plus"}
                   className="text-2xl hover:cursor-pointer"
