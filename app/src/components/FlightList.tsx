@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Flight } from "@/app/(main)/search/page";
 import { Icon } from "@iconify/react";
 import SeatMenu from "./seatMenu";
-import { POSTFromPage } from "@/app/api/flights/route"
+import middleware from "@/middleware";
+
 import { deprecate } from "util";
 
 interface FlightListProps {
@@ -14,6 +15,7 @@ interface FlightListProps {
   onDeleteFlight?: (key: number) => void;
   setFlights: React.Dispatch<React.SetStateAction<Flight[]>>;
   isLoggedIn: boolean;
+
 }
 
 const FlightList = (props: FlightListProps) => {
@@ -50,20 +52,39 @@ const FlightList = (props: FlightListProps) => {
               </div>
             </div>
             <div className="flex items-center justify-center pr-4">
-              {props.isLoggedIn &&  (
+              {props.isLoggedIn &&   (
                 <Icon
-                  icon={props.flightsPage ? "tabler:trash" : "tabler:plus"}
+                  icon={props.flightsPage ? "tabler:trash" : "tabler:plus"} // If on flights page the icon is trash, otherwise (on search) it's plus
                   className="text-2xl hover:cursor-pointer"
                   onClick={() => {
-                    // const FlightProps = {
-                    //   from: flight.from,
-                    //   to: flight.to,
-                    //   departure: flight.departure,
-                    //   arrival: flight.arrival,
-                    //   seat: "1",
-                    //   key: flight.key,
-                    // }
-                    //POSTFromPage(FlightProps); // Uncommenting this breaks page. Need to figure out how to fix this
+                    /*const FlightProps = {
+                      from: flight.from,
+                      to: flight.to,
+                      departure: flight.departure,
+                      arrival: flight.arrival,
+                      seat: "1",
+                      key: flight.key,
+                    }
+
+                    const dummyUser = {
+                      username: "testUser",
+                      email: "test@user.com",
+                      password: "userTest",
+                      flights: [
+                        {
+                          from: "a",
+                          to: "b",
+                          departure: "yesterday",
+                          arrival: "tomorrow",
+                          travelers: "0",
+                          key: 0,
+                        }
+                      ]
+                    }
+
+                    dummyUser.flights = [...dummyUser.flights]; // Update user flight list
+                      */
+                    // Insert code that adds flight to a user's flight array
                   }
                     //props.onDeleteFlight && props.onDeleteFlight(flight.key)
                   }
