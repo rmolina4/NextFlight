@@ -1,22 +1,21 @@
 "use client";
 
-import { useState } from "react";
 import { Flight } from "@/app/(main)/search/page";
 import { Icon } from "@iconify/react";
 import SeatMenu from "./seatMenu";
-import { POSTFromPage } from "@/app/api/flights/route"
-import { deprecate } from "util";
+import { Session } from "next-auth";
+import { usePathname } from "next/navigation";
 
 interface FlightListProps {
   flights: Flight[];
-  className?: string;
-  flightsPage?: boolean;
   onDeleteFlight?: (key: number) => void;
   setFlights: React.Dispatch<React.SetStateAction<Flight[]>>;
-  isLoggedIn: boolean;
+  user: Session | null;
 }
 
 const FlightList = (props: FlightListProps) => {
+  const pathname = usePathname();
+
   const setSeat = (key: number, newSeat: string) => {
     props.setFlights((prevFlights) =>
       prevFlights.map((flight) =>
@@ -26,7 +25,7 @@ const FlightList = (props: FlightListProps) => {
   };
 
   return (
-    <div className={`flex flex-col items-center ${props.className}`}>
+    <div className={`flex flex-col items-center`}>
       <div className="w-[800px]">
         <h1 className="text-xl font-bold pt-5">Results</h1>
       </div>
@@ -50,23 +49,13 @@ const FlightList = (props: FlightListProps) => {
               </div>
             </div>
             <div className="flex items-center justify-center pr-4">
-              {props.isLoggedIn &&  (
+              {props.user && (
                 <Icon
-                  icon={props.flightsPage ? "tabler:trash" : "tabler:plus"}
+                  icon={pathname === '/flights' ? "tabler:trash" : "tabler:plus"}
                   className="text-2xl hover:cursor-pointer"
                   onClick={() => {
-                    // const FlightProps = {
-                    //   from: flight.from,
-                    //   to: flight.to,
-                    //   departure: flight.departure,
-                    //   arrival: flight.arrival,
-                    //   seat: "1",
-                    //   key: flight.key,
-                    // }
-                    //POSTFromPage(FlightProps); // Uncommenting this breaks page. Need to figure out how to fix this
-                  }
-                    //props.onDeleteFlight && props.onDeleteFlight(flight.key)
-                  }
+                    
+                  }}
                 />
               )}
             </div>

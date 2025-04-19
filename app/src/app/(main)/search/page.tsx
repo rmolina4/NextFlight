@@ -27,8 +27,6 @@ export interface Search {
 export default function Search() {
   const [flights, setFlights] = useState<Flight[]>([]);
   const { data: session } = useSession();
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!session?.user);
-
   const router = useRouter();
 
   const handleSubmit = async (search: Search) => {
@@ -123,7 +121,7 @@ export default function Search() {
         <FlightList
           flights={flights}
           setFlights={setFlights}
-          isLoggedIn={isLoggedIn}
+          user={session}
         />
       )}
       <StudyAbroad />

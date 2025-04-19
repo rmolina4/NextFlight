@@ -5,11 +5,11 @@ import { useSession } from "next-auth/react";
 import { login } from "@/app/actions";
 
 export default function Login() {
-  const { data: session } = useSession();
-  const isLoggedIn = !!session?.user;
   const router = useRouter();
+  const { data: session } = useSession();
+  
   useEffect(() => {
-    if (isLoggedIn) {
+    if (session) {
       router.push("/");
     }
   }, []);

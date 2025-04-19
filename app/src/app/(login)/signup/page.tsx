@@ -4,12 +4,11 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 export default function Signup() {
-  const { data: session } = useSession();
-  const isLoggedIn = !!session?.user;
   const router = useRouter();
+  const { data: session } = useSession();
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (session) {
       router.push("/");
     }
   }, []);
@@ -17,7 +16,7 @@ export default function Signup() {
   const [usernameInput, setUsernameInput] = useState<string>("");
   const [emailInput, setEmailInput] = useState<string>("");
   const [passwordInput, setPasswordInput] = useState<string>("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   function handleUsernameChange(e: React.ChangeEvent<HTMLInputElement>) {
     setUsernameInput(e.target.value);
