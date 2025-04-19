@@ -19,6 +19,6 @@ export async function doCredentialLogin (formData: FormData) : Promise<any> {
         });
         return response;
     } catch (err : any) {
-        throw err;
+        return {error: { message: err.message || "Login failed." } };
     }
 }
