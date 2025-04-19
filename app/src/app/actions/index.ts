@@ -1,24 +1,25 @@
-'use server'
+"use server";
 
 import { signIn, signOut } from "../auth";
 
-export async function doLogout () {
-    await signOut({ redirectTo: "/" });
+interface loginInfo {
+  username: string;
+  password: string;
 }
 
-export async function doCredentialLogin (formData: FormData) : Promise<any> {
+export async function logout() {
+  await signOut({ redirectTo: "/" });
+}
 
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
-    try {
-        const response = await signIn("credentials", {
-            email,
-            password,
-            redirect: false,
-        });
-        return response;
-    } catch (err : any) {
-        throw err;
-    }
+export async function login(data: loginInfo): Promise<any> {
+  try {
+    const response = await signIn("credentials", {
+      username: data.username,
+      password: data.password,
+      redirect: false,
+    });
+    return response;
+  } catch (err: any) {
+    return {error: { message: err.message || "Login failed." } };
+  }
 }

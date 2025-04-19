@@ -14,18 +14,18 @@ export const {
     providers: [
         CredentialsProvider( {
             credentials: {
-                email: {},
+                username: {},
                 password: {},
             },
             async authorize( credentials ) {
                 if ( !credentials ) return null;
 
                 try {
-                    const user = await User.findOne( { email: credentials.email } ).lean();
+                    const user = await User.findOne( { username: credentials.username } ).lean();
 
                     if (user) {
                         const isMatch = await bcrypt.compare(
-                            credentials.password,
+                            credentials.password as string,
                             user.password
                         );
 
@@ -33,7 +33,7 @@ export const {
                             return {
                                 id: user._id.toString(),
                                 email: user.email,
-                                name: user.username,
+                                username: user.username,
                             }
                         } else {
                             console.log( "Email or Password is incorrect" );

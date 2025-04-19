@@ -38,10 +38,11 @@ const FlightList = (props: FlightListProps) => {
             key={flight.key}
             className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white"
           >
-            <p className="grow p-2 m-1">From: {flight.from}</p>
-            <p className="grow p-2 m-1">To: {flight.to}</p>
+            <p className="grow p-2 m-1">From: {flight.origin}</p>
+            <p className="grow p-2 m-1">To: {flight.destination}</p>
             <p className="grow p-2 m-1">Departure: {flight.departure}</p>
-            <p className="grow p-2 m-1">Return: {flight.arrival}</p>
+            <p className="grow p-2 m-1">Arrival: {flight.arrival}</p>
+            <p className="grow p-2 m-1">Price: {flight.price}</p>
             <div className="grow p-2 m-1">
               <div className="flex items-center justify-center gap-2">
                 <p>Seat: {flight.seat}</p>
@@ -56,7 +57,7 @@ const FlightList = (props: FlightListProps) => {
                   icon={props.flightsPage ? "tabler:trash" : "tabler:plus"} // If on flights page the icon is trash, otherwise (on search) it's plus
                   className="text-2xl hover:cursor-pointer"
                   onClick={() => {
-                    const FlightProps = {
+                    /*const FlightProps = {
                       from: flight.from,
                       to: flight.to,
                       departure: flight.departure,
@@ -82,7 +83,7 @@ const FlightList = (props: FlightListProps) => {
                     }
 
                     dummyUser.flights = [...dummyUser.flights]; // Update user flight list
-
+                      */
                     // Insert code that adds flight to a user's flight array
                   }
                     //props.onDeleteFlight && props.onDeleteFlight(flight.key)
