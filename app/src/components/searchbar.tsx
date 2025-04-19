@@ -10,8 +10,7 @@ interface SearchBarProps {
 export default function SearchBar(prop: SearchBarProps) {
   const [fromInput, setFromInput] = useState("");
   const [toInput, setToInput] = useState("");
-  const [departureInput, setDepartureInput] = useState("");
-  const [returnInput, setReturnInput] = useState("");
+  const [dateInput, setdateInput] = useState("");
 
   function handleFromChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFromInput(e.target.value);
@@ -22,11 +21,7 @@ export default function SearchBar(prop: SearchBarProps) {
   }
 
   function handleDepartureChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setDepartureInput(e.target.value);
-  }
-
-  function handleReturnChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setReturnInput(e.target.value);
+    setdateInput(e.target.value);
   }
 
   return (
@@ -56,14 +51,7 @@ export default function SearchBar(prop: SearchBarProps) {
           placeholder="Departure"
           className="p-2 w-24"
           onChange={handleDepartureChange}
-          value={departureInput}
-        />
-        <input
-          type="text"
-          placeholder="Return"
-          className="p-2 w-20"
-          onChange={handleReturnChange}
-          value={returnInput}
+          value={dateInput}
         />
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded m-2 hover:bg-blue-600 hover:cursor-pointer"
@@ -71,15 +59,13 @@ export default function SearchBar(prop: SearchBarProps) {
           onClick={(e: React.FormEvent) => {
             e.preventDefault();
             const newSearch = {
-              origin: fromInput,
-              destination: toInput,
-              departureDate: departureInput,
-              returnDate: returnInput,
+              from: fromInput,
+              to: toInput,
+              date: dateInput,
             };
             setFromInput('');
             setToInput('');
-            setDepartureInput('');
-            setReturnInput('');
+            setdateInput('');
             prop.handleSubmit(newSearch);
           }}
         >

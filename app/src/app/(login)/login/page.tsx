@@ -1,33 +1,31 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { doCredentialLogin } from "../../actions/index";
+import { useSession } from "next-auth/react";
+import { login } from "@/app/actions";
 
 export default function Login() {
+  const { data: session } = useSession();
+  const isLoggedIn = !!session?.user;
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
-  
-  async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    try {
-      const formData = new FormData(e.currentTarget);
-      const username = formData.get("username") as string | null;
-      const password = formData.get("password") as string | null;
-
-      const response = await doCredentialLogin(formData);
-
-      if (response?.error) {
-        //console.error(response.error);
-        setError("Login Failed. Please use valid credentials.");
-      } else {
-        router.push("/");
-      }
-    } catch (e: any) {
-      console.error(e);
-      setError(e.message || "An error occurred");
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push("/");
     }
-  };
-  
+  }, []);
+
+  const [usernameInput, setUsernameInput] = useState<string>("");
+  const [passwordInput, setPasswordInput] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+
+  function handleUsernameChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setUsernameInput(e.target.value);
+  }
+
+  function handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setPasswordInput(e.target.value);
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <h1 className="text-2xl text-blue-500 absolute top-0 left-0 p-2 mt-1">
@@ -36,19 +34,57 @@ export default function Login() {
       <div className="flex-1 flex justify-center items-center">
         <div className="flex flex-col justify-center items-center border border-gray-200 p-5 rounded-lg shadow-md">
           <h1 className="text-2xl text-blue-500">Login</h1>
-          <form className="flex flex-col gap-4 mt-5" onSubmit={handleSubmit}>
-            <input type="text" name="username" placeholder="Username" className="border p-2 rounded" />
-            <input type="password" name="password" placeholder="Password" className="border p-2 rounded" />
-            <button type="submit" className="bg-blue-300 py-2 px-4 rounded-full hover:cursor-pointer">Login</button>
+          <form className="flex flex-col gap-4 mt-5">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              className="border p-2 rounded"
+              onChange={handleUsernameChange}
+              value={usernameInput}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              className="border p-2 rounded"
+              onChange={handlePasswordChange}
+              value={passwordInput}
+            />
+            <button
+              type="submit"
+              className="bg-blue-300 py-2 px-4 rounded-full hover:cursor-pointer"
+              onClick={async (e: React.FormEvent) => {
+                e.preventDefault();
+
+                const res = await login({
+                  username: usernameInput,
+                  password: passwordInput,
+                });
+
+                if (!res.error) {
+                  router.push(`/`);
+                } else {
+                  setError(res.error);
+                }
+              }}
+            >
+              Login
+            </button>
           </form>
-          {error && <p className="text-red-500 mt-4 text-sm">{error}</p>}
-          <p className="mt-4 text-sm">Don't have an account? <a href="/signup" className="text-blue-500">Signup</a></p>
+          {error && (
+            <div className="text-red-600 bg-red-100 p-2 rounded border border-red-300">
+              {error}
+            </div>
+          )}
+          <p className="mt-4 text-sm">
+            Don't have an account?{" "}
+            <a href="/signup" className="text-blue-500">
+              Signup
+            </a>
+          </p>
         </div>
       </div>
     </div>
   );
-}
-
-function setError(err: any) {
-  throw new Error(err);
 }

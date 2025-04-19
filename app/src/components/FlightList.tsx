@@ -38,9 +38,9 @@ const FlightList = (props: FlightListProps) => {
           >
             <p className="grow p-2 m-1">From: {flight.origin}</p>
             <p className="grow p-2 m-1">To: {flight.destination}</p>
-            <p className="grow p-2 m-1">Departure: {flight.departureDate}</p>
-            <p className="grow p-2 m-1">Return: {flight.returnDate}</p>
-            {/* <p className="grow p-2 m-1">Price: {flight.price.total}</p> */}
+            <p className="grow p-2 m-1">Departure: {flight.departure}</p>
+            <p className="grow p-2 m-1">Arrival: {flight.arrival}</p>
+            <p className="grow p-2 m-1">Price: {flight.price}</p>
             <div className="grow p-2 m-1">
               <div className="flex items-center justify-center gap-2">
                 <p>Seat: {flight.seat}</p>
@@ -55,14 +55,14 @@ const FlightList = (props: FlightListProps) => {
                   icon={props.flightsPage ? "tabler:trash" : "tabler:plus"}
                   className="text-2xl hover:cursor-pointer"
                   onClick={() => {
-                    const FlightProps = {
-                      from: flight.from,
-                      to: flight.to,
-                      departure: flight.departure,
-                      arrival: flight.arrival,
-                      seat: "1",
-                      key: flight.key,
-                    }
+                    // const FlightProps = {
+                    //   from: flight.from,
+                    //   to: flight.to,
+                    //   departure: flight.departure,
+                    //   arrival: flight.arrival,
+                    //   seat: "1",
+                    //   key: flight.key,
+                    // }
                     //POSTFromPage(FlightProps); // Uncommenting this breaks page. Need to figure out how to fix this
                   }
                     //props.onDeleteFlight && props.onDeleteFlight(flight.key)

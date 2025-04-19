@@ -11,15 +11,14 @@ import { useEffect } from "react";
 export default function Flights() {
   const [flights, setFlights] = useState<Flight[]>([]);
   const { data: session, status } = useSession();
-  const isLoggedIn = !!session?.user;
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!session?.user);
   const router = useRouter();
 
   useEffect(() => {
     if (!isLoggedIn) {
       router.push("/login");
     }
-  }, [isLoggedIn, router]);
-
+  }, [isLoggedIn]);
 
   const onDeleteFlight = (key: number) => {
     setFlights(flights.filter((flight) => flight.key !== key));
@@ -29,7 +28,13 @@ export default function Flights() {
     <div className="relative">
       <Plane />
       <div className="absolute top-0 w-full flex justify-center items-center">
-        <FlightList setFlights={setFlights} flights={flights} flightsPage={true} onDeleteFlight={onDeleteFlight} isLoggedIn={true} />
+        <FlightList
+          setFlights={setFlights}
+          flights={flights}
+          flightsPage={true}
+          onDeleteFlight={onDeleteFlight}
+          isLoggedIn={true}
+        />
       </div>
     </div>
   );
