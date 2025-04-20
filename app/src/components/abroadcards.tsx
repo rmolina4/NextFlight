@@ -19,9 +19,9 @@ export default function AbroadCards({ title, location, url }: AbroadCardProps) {
           src={url}
           alt={"Content Image"}
           unoptimized
-          width={100}
-          height={100}
-          className="rounded-xl"
+          width={75}
+          height={75}
+          className="rounded-xl min-w-[75px] min-h-[75px]"
         />
       </div>
     </div>
