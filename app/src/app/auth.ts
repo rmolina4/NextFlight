@@ -30,12 +30,13 @@ export const {
                             credentials.password as string,
                             user.password
                         );
+                        console.log(user._id.toString());
 
                         if (isMatch) {
                             return {
                                 id: user._id.toString(),
                                 email: user.email,
-                                username: user.username,
+                                name: user.username,
                             }
                         } else {
                             console.log( "Email or Password is incorrect" );
