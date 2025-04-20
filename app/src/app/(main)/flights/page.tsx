@@ -10,14 +10,22 @@ import { useEffect } from "react";
 
 export default function Flights() {
   const [flights, setFlights] = useState<Flight[]>([]);
-  const { data: session} = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
 
+  const fetchFlights = async () => {
+    const res = await fetch("/api/flights");
+    const { flights } = await res.json();
+    setFlights(flights);
+  };
+
   useEffect(() => {
-    if (!session) {
+    if (session === null) {
       router.push("/login");
+    } else {
+      fetchFlights();
     }
-  }, []);
+  }, [session]);
 
   return (
     <div className="relative">

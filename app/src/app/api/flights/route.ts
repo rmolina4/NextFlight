@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   // Handle POST requests
   try {
-    const { origin, destination, departure, arrival, price, key, seat } =
+    const { origin, destination, departure, arrival, price, seat } =
       await request.json();
     await connectMongoDB();
     const session = await auth();
@@ -40,6 +40,7 @@ export async function POST(request: NextRequest) {
       );
     }
     const id = session.user?.id;
+    const key = crypto.randomUUID();
     await User.findByIdAndUpdate(id, {
       $push: {
         flights: {
