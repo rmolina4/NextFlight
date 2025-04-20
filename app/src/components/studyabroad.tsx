@@ -1,14 +1,23 @@
-import Abroadcards from "./abroadCards";
+import Abroadcards from "./abroadcards";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function StudyAbroad() {
-  const programs = [
-    { title: "Study Abroad Program 1", location: "Venice, Italy" },
-    { title: "Study Abroad Program 2", location: "London, England" },
-    { title: "Study Abroad Program 3", location: "Tokyo, Japan" },
-    { title: "Study Abroad Program 4", location: "Barcelona, Spain" },
-    { title: "Study Abroad Program 5", location: "Paris, France" },
-    { title: "Study Abroad Program 6", location: "Berlin, Germany" },
-  ];
+  const [programs, setPrograms] = useState<{ title: string; location: string; url: string }[]>([]);
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/study-abroad");
+        const data = await res.json();
+        setPrograms(data.programs);
+      } catch (error) {
+        console.error("Failed to fetch programs:", error);
+      }
+    };
+
+    fetchPrograms();
+  }, []);
 
   return (
     <div className="flex flex-col items-center">
@@ -21,6 +30,7 @@ export default function StudyAbroad() {
             key={program.title}
             title={program.title}
             location={program.location}
+            url={program.url}
           />
         ))}
       </div>

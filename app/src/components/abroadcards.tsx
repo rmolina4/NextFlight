@@ -3,9 +3,10 @@ import Image from "next/image";
 type AbroadCardProps = {
   title: string;
   location: string;
+  url: string;
 };
 
-export default function AbroadCards({ title, location }: AbroadCardProps) {
+export default function AbroadCards({ title, location, url }: AbroadCardProps) {
   return (
     <div className="flex justify-between items-center bg-white text-black p-2 rounded-xl shadow-md border w-[380px]">
       <div>
@@ -15,7 +16,7 @@ export default function AbroadCards({ title, location }: AbroadCardProps) {
 
       <div className="flex space-x-2 items-center bg-[#F9EEEE];">
         <Image
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREO3tkIJnmJZcWmgLLR-z973QVHQ8zbwDGnw&s"
+          src={url}
           alt={"Content Image"}
           unoptimized
           width={100}
