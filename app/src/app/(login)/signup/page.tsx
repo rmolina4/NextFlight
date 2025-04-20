@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { doCredentialLogin } from "@/app/actions";
 
 export default function Signup() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -34,7 +35,15 @@ export default function Signup() {
         setError(data.message || "An error occurred");
         console.error(error);
       } else {
+        const loginFormData = new FormData();
+        if (username && password) {
+          loginFormData.append("username", username);
+          loginFormData.append("password", password);
+        }
+
+        await doCredentialLogin(loginFormData);
         setIsLoggedIn(true);
+
       }
     } catch (e: any) {
       setError(e.message || "An error occurred");
