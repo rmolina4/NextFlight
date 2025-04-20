@@ -1,42 +1,66 @@
 import connectMongoDB from "@/libs/mongodb";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import mongoose from "mongoose";
-import SavedFlight from "@/models/flightSchema";
+import { auth } from "@/app/auth";
+import User from "@/models/userSchema";
 
 export async function GET(request: NextRequest) {
-    // Handle GET requests
+  // Handle GET requests
+  try {
     await connectMongoDB();
-    const flights = await SavedFlight.find();
+    const session = await auth();
+    if (!session) {
+      return NextResponse.json(
+        { message: "Must be logged in" },
+        { status: 401 }
+      );
+    }
+    const id = session.user?.id;
+    const flights = await User.findById(id).select("flights");
     return NextResponse.json({ flights });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Failed to get flights", error },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(request: NextRequest) {
-    // Handle POST requests 
-    const { from, to, departure, arrival, travelers, key } = await request.json();
+  // Handle POST requests
+  try {
+    const { origin, destination, departure, arrival, price, key, seat } =
+      await request.json();
     await connectMongoDB();
-    await SavedFlight.create({ from, to, departure, arrival, travelers, key });
-    return NextResponse.json({ message: "Item added successfully" }, { status: 201 });
-}
-
-interface FlightProps {
-    from: string;
-    to: string;
-    departure: string;
-    arrival: string;
-    seat: string;
-    key: number;
-}
-
-export async function POSTFromPage(props: FlightProps) {
-    // Handle POST requests
-    const from = props.from;
-    const to = props.to;
-    const departure = props.departure;
-    const arrival = props.arrival;
-    const travelers = "N/A";
-    const key = props.key;
-    await connectMongoDB();
-    await SavedFlight.create({ from, to, departure, arrival, travelers, key });
-    return NextResponse.json({ message: "Item added successfully" }, { status: 201 });
+    const session = await auth();
+    if (!session) {
+      return NextResponse.json(
+        { message: "Must be logged in" },
+        { status: 401 }
+      );
+    }
+    const id = session.user?.id;
+    await User.findByIdAndUpdate(id, {
+      $push: {
+        flights: {
+          origin,
+          destination,
+          departure,
+          arrival,
+          price,
+          key,
+          seat,
+        },
+      },
+    });
+    return NextResponse.json(
+      { message: "Item added successfully" },
+      { status: 201 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Failed to create flight", error },
+      { status: 500 }
+    );
+  }
 }
