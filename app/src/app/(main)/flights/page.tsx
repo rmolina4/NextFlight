@@ -1,5 +1,4 @@
 "use client";
-
 import FlightList from "@/components/FlightList";
 import Plane from "@/components/planeBG";
 import { useState } from "react";

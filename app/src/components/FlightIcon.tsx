@@ -1,5 +1,4 @@
 "use client";
-
 import { Flight } from "@/app/(main)/search/page";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";

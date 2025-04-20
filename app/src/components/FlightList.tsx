@@ -1,5 +1,4 @@
 "use client";
-
 import { Flight } from "@/app/(main)/search/page";
 import SeatMenu from "./seatMenu";
 import { Session } from "next-auth";

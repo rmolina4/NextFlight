@@ -1,5 +1,4 @@
 "use client";
-
 import SearchBar from "../../../components/searchbar";
 import Plane from "@/components/plane";
 import { useState } from "react";
