@@ -17,13 +17,11 @@ export default function Login() {
       const response = await doCredentialLogin(formData);
 
       if (response?.error) {
-        //console.error(response.error);
         setError("Login Failed. Please use valid credentials.");
       } else {
         router.push("/");
       }
     } catch (e: any) {
-      console.error(e);
       setError(e.message || "An error occurred");
     }
   };

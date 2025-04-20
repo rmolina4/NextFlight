@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
       );
     }
     const id = session.user?.id;
-    const flights = await User.findById(id).select("flights");
+    const flights = await User.findById(id).select("flights").lean();
     return NextResponse.json({ flights });
   } catch (error) {
     return NextResponse.json(
@@ -61,7 +61,6 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    console.error(error);
     return NextResponse.json(
       { message: "Failed to create flight", error },
       { status: 500 }

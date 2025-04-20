@@ -8,7 +8,6 @@ const middleware = async (req: NextRequest) => {
   const { pathname } = req.nextUrl;
   const session = await auth();
   const isAuthenticated = !!session?.user;
-  console.log(isAuthenticated, pathname);
 
   if (!isAuthenticated) {
     return NextResponse.redirect(new URL("/login", req.url));

@@ -30,7 +30,6 @@ export const {
                             credentials.password as string,
                             user.password
                         );
-                        console.log(user._id.toString());
 
                         if (isMatch) {
                             return {

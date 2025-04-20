@@ -33,7 +33,6 @@ export default function Signup() {
 
       if (response.status != 201) {
         setError(data.message || "An error occurred");
-        console.error(error);
       } else {
         const loginFormData = new FormData();
         if (username && password) {
@@ -47,8 +46,6 @@ export default function Signup() {
       }
     } catch (e: any) {
       setError(e.message || "An error occurred");
-      console.error(error);
-
     }
   };
   

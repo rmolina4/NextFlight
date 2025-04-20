@@ -15,8 +15,8 @@ export default function Flights() {
 
   const fetchFlights = async () => {
     const res = await fetch("/api/flights");
-    const { flights } = await res.json();
-    setFlights(flights);
+    const data = await res.json();
+    setFlights(data.flights.flights);
   };
 
   useEffect(() => {

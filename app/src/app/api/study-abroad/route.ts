@@ -10,7 +10,6 @@ export async function GET(request: NextRequest) {
         const programs = await Program.find();
         return NextResponse.json({programs})
     } catch (error){
-        console.error("Failed to fetch programs:", error);
         return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 }

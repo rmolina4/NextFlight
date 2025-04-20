@@ -1,9 +1,11 @@
+import { useRouter } from "next/router";
 import Abroadcards from "./abroadcards";
 import { useEffect } from "react";
 import { useState } from "react";
 
 export default function StudyAbroad() {
   const [programs, setPrograms] = useState<{ title: string; location: string; url: string }[]>([]);
+    const router = useRouter();
 
   useEffect(() => {
     const fetchPrograms = async () => {
@@ -12,7 +14,7 @@ export default function StudyAbroad() {
         const data = await res.json();
         setPrograms(data.programs);
       } catch (error) {
-        console.error("Failed to fetch programs:", error);
+        router.push("/500");
       }
     };
 

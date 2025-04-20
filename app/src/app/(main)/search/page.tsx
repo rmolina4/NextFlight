@@ -50,7 +50,6 @@ export default function Search() {
       return;
     }
     let data = await res.json();
-    console.log(data);
     if (!data) {
       router.push("/500");
       return;
@@ -68,7 +67,6 @@ export default function Search() {
       return;
     }
     data = await res.json();
-    console.log(data);
     if (!data) {
       router.push("/500");
       return;
@@ -86,7 +84,7 @@ export default function Search() {
     url = `${ow_url}?${params.toString()}`;
     res = await fetch(url, options);
     if (!res.ok) {
-      console.error("Third API request failed");
+      router.push("/500");
       return;
     }
     data = await res.json();
@@ -98,7 +96,6 @@ export default function Search() {
       ...data.data.itineraries.buckets[0].items,
       ...data.data.itineraries.buckets[1].items,
     ];
-    console.log(items);
 
     setFlights(
       items.map((item: any, index: number) => ({
