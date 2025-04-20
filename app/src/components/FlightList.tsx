@@ -73,12 +73,11 @@ const FlightList = (props: FlightListProps) => {
                     onClick={async () => {
                       if(pathname === "/flights") {
                         // delete flight
-                        const res = await fetch(`/api/flights`, {
+                        const res = await fetch(`/api/flights/${flight.key}`, {
                           method: "DELETE",
                           headers: {
                             "Content-Type": "application/json",
                           },
-                          body: JSON.stringify({}),
                         });
                       } else {
                         // add new flight
@@ -87,7 +86,7 @@ const FlightList = (props: FlightListProps) => {
                           headers: {
                             "Content-Type": "application/json",
                           },
-                          body: JSON.stringify({}),
+                          body: JSON.stringify({origin: flight.origin, destination: flight.destination, departure: flight.departure, arrival: flight.arrival, price: flight.price, seat: flight.seat}),
                         });
                       }
                     }}
