@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from "@/models/userSchema";
+import connectMongoDB from "@/libs/mongodb";
 
 export const {
     handlers: { GET, POST },
@@ -21,6 +22,7 @@ export const {
                 if ( !credentials ) return null;
 
                 try {
+                    await connectMongoDB();
                     const user = await User.findOne( { username: credentials.username } ).lean();
 
                     if (user) {

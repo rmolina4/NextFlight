@@ -7,5 +7,7 @@ export async function GET(request: NextRequest) {
     // Handle GET requests
     try{
         await connectMongoDB();
-    } catch
+    } catch (error){
+
+    }
 }
