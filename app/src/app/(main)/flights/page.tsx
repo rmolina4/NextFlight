@@ -34,7 +34,7 @@ export default function Flights() {
         <FlightList
           setFlights={setFlights}
           flights={flights}
-          onDeleteFlight={(key: number) => {
+          onDeleteFlight={(key: string) => {
             setFlights(flights.filter((flight) => flight.key !== key));
           }}
           user={session}

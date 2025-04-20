@@ -7,7 +7,7 @@ import { useState } from "react";
 
 interface FlightIconProps {
   flight: Flight;
-  onDeleteFlight?: (key: number) => void;
+  onDeleteFlight?: (key: string) => void;
 }
 
 const FlightIcon = (props: FlightIconProps) => {

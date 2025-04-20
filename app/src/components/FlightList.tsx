@@ -1,16 +1,14 @@
 "use client";
 
 import { Flight } from "@/app/(main)/search/page";
-import { Icon } from "@iconify/react";
 import SeatMenu from "./seatMenu";
 import { Session } from "next-auth";
 import { redirect, usePathname } from "next/navigation";
-import { useState } from "react";
 import FlightIcon from "./FlightIcon";
 
 interface FlightListProps {
   flights: Flight[];
-  onDeleteFlight?: (key: number) => void;
+  onDeleteFlight?: (key: string) => void;
   setFlights: React.Dispatch<React.SetStateAction<Flight[]>>;
   user: Session | null;
 }
@@ -18,7 +16,7 @@ interface FlightListProps {
 const FlightList = (props: FlightListProps) => {
   const pathname = usePathname();
 
-  const setSeat = async (key: number, newSeat: string) => {
+  const setSeat = async (key: string, newSeat: string) => {
     props.setFlights((prevFlights) =>
       prevFlights.map((flight) =>
         flight.key === key ? { ...flight, seat: newSeat } : flight
