@@ -5,6 +5,8 @@ import { Icon } from "@iconify/react";
 import SeatMenu from "./seatMenu";
 import { Session } from "next-auth";
 import { redirect, usePathname } from "next/navigation";
+import { useState } from "react";
+import FlightIcon from "./FlightIcon";
 
 interface FlightListProps {
   flights: Flight[];
@@ -65,32 +67,7 @@ const FlightList = (props: FlightListProps) => {
               </div>
               <div className="flex items-center justify-center pr-4">
                 {props.user && (
-                  <Icon
-                    icon={
-                      pathname === "/flights" ? "tabler:trash" : "tabler:plus"
-                    }
-                    className="text-2xl hover:cursor-pointer"
-                    onClick={async () => {
-                      if(pathname === "/flights") {
-                        // delete flight
-                        const res = await fetch(`/api/flights/${flight.key}`, {
-                          method: "DELETE",
-                          headers: {
-                            "Content-Type": "application/json",
-                          },
-                        });
-                      } else {
-                        // add new flight
-                        const res = await fetch(`/api/flights`, {
-                          method: "POST",
-                          headers: {
-                            "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify({origin: flight.origin, destination: flight.destination, departure: flight.departure, arrival: flight.arrival, price: flight.price, seat: flight.seat}),
-                        });
-                      }
-                    }}
-                  />
+                  <FlightIcon flight={flight} onDeleteFlight={props.onDeleteFlight}/>
                 )}
               </div>
             </div>
