@@ -45,7 +45,7 @@ const FlightList = (props: FlightListProps) => {
         {!props.flights || props.flights.length === 0 ? (
           <p className="text-white">No flights found.</p>
         ) : (
-          props.flights.map((flight) => (
+          props.flights.flights.map((flight) => (
             <div
               key={flight.key}
               className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white"
