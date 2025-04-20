@@ -3,7 +3,7 @@
 import SearchBar from "../../../components/searchbar";
 import Plane from "@/components/plane";
 import { useState } from "react";
-import StudyAbroad from "@/components/studyAbroad";
+import StudyAbroad from "@/components/studyabroad";
 import FlightList from "@/components/FlightList";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,7 @@ export interface Flight {
   departure: string;
   arrival: string;
   price: string;
-  key: number;
+  key: string;
   seat: string;
 }
 
@@ -107,7 +107,7 @@ export default function Search() {
         departure: `${item.legs[0].departure}`,
         arrival: `${item.legs[item.legs.length - 1].arrival}`,
         price: `${item.price.formatted}`,
-        key: index,
+        key: `${index}`,
         seat: "9A",
       }))
     );

@@ -53,12 +53,15 @@ export async function POST(request: NextRequest) {
           seat,
         },
       },
-    });
+      },
+      { new: true }
+    );
     return NextResponse.json(
       { message: "Item added successfully" },
       { status: 201 }
     );
   } catch (error) {
+    console.error(error);
     return NextResponse.json(
       { message: "Failed to create flight", error },
       { status: 500 }

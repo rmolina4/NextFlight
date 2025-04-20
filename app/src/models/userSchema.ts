@@ -14,7 +14,7 @@ const flightSchema: Schema = new Schema({
   departure: { type: String, required: true },
   arrival: { type: String, required: true },
   price: { type: String, required: true },
-  key: { type: Number, required: true },
+  key: { type: String, required: true },
   seat: { type: String, required: true },
 });
 
@@ -24,7 +24,7 @@ const userSchema: Schema = new Schema({
   password: { type: String, required: true },
   flights: {
     type: [flightSchema],
-    required: false,
+    required: true,
     default: [],
   },
 });
