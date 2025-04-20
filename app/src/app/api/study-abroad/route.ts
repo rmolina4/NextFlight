@@ -5,4 +5,7 @@ import mongoose from "mongoose";
 
 export async function GET(request: NextRequest) {
     // Handle GET requests
+    try{
+        await connectMongoDB();
+    } catch
 }
