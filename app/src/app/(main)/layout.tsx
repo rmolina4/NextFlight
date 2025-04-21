@@ -26,15 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
+      <div
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProvider>
           <NavBar></NavBar>
           {children}
         </SessionProvider>
-      </body>
-    </html>
+      </div>
   );
 }

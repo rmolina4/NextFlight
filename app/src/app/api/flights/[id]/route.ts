@@ -9,9 +9,9 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  // Handle POST requests
+  // Handle PUT requests
   try {
-    const flightId = params.id;
+    const { id: flightId } = await params;
     const { seat } = await request.json();
     await connectMongoDB();
     const session = await auth();
@@ -23,16 +23,22 @@ export async function PUT(
     }
     const userId = session.user?.id;
     await User.findByIdAndUpdate(
-      { _id: userId, "flights.key": flightId },
-      { $set: { "flights.seat": seat } },
-      { new: true }
+      userId,
+      {
+        $set: { "flights.$[elem].seat": seat },
+      },
+      { arrayFilters: [{ "elem.key": flightId }] }
     );
     return NextResponse.json(
       { message: "Item updated successfully" },
       { status: 200 }
     );
   } catch (error) {
-    return NextResponse.json({ message: "Failed to update", error }, { status: 500 });
+    console.error(error);
+    return NextResponse.json(
+      { message: "Failed to update", error },
+      { status: 500 }
+    );
   }
 }
 
@@ -42,11 +48,14 @@ export async function DELETE(
 ) {
   // Handle POST requests
   try {
-    const flightId = params.id;
+    const { id: flightId } = await params;
     await connectMongoDB();
     const session = await auth();
     if (!session) {
-      return NextResponse.json({ message: "Must be logged in" }, { status: 401 });
+      return NextResponse.json(
+        { message: "Must be logged in" },
+        { status: 401 }
+      );
     }
     const userId = session.user?.id;
     await User.findByIdAndUpdate(userId, {
@@ -57,6 +66,9 @@ export async function DELETE(
       { status: 200 }
     );
   } catch (error) {
-    return NextResponse.json({ message: "Failed to delete", error }, { status: 500 });
+    return NextResponse.json(
+      { message: "Failed to delete", error },
+      { status: 500 }
+    );
   }
 }

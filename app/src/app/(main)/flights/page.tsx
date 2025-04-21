@@ -27,9 +27,9 @@ export default function Flights() {
   }, [session]);
 
   return (
-    <div className="relative">
+    <div className="relative h-screen overflow-hidden">
       <Plane />
-      <div className="absolute top-0 w-full flex justify-center items-center">
+      <div className="absolute top-0 w-full h-full overflow-y-auto flex justify-center items-center">
         <FlightList
           setFlights={setFlights}
           flights={flights}
