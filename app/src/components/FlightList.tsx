@@ -22,7 +22,7 @@ const FlightList = (props: FlightListProps) => {
         flight.key === key ? { ...flight, seat: newSeat } : flight
       )
     );
-    if(pathname === "/flights") {
+    if (pathname === "/flights") {
       const res = await fetch(`/api/flights/${key}`, {
         method: "PUT",
         headers: {
@@ -41,33 +41,38 @@ const FlightList = (props: FlightListProps) => {
       <div className="w-full max-w-screen-md px-2">
         <h1 className="text-xl font-bold pt-5">Results</h1>
       </div>
-      <div className="flex flex-col w-full max-w-3xl gap-8 px-2">
+      <div className="flex flex-col w-full max-w-[48rem] gap-8 px-2">
         {!props.flights || props.flights.length === 0 ? (
           <p className="text-white">No flights found.</p>
         ) : (
-          props.flights.map((flight) => ( // We should probably make it so the flights property is NOT an object of an array of objects.
+          props.flights.map((flight) => (
             <div
               key={flight.key}
-              className="flex flex-wrap justify-center rounded-3xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white"
+              className="flex justify-between items-center rounded-3xl shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white px-4"
             >
-              <p className="p-2 m-1">From: {flight.origin}</p>
-              <p className="p-2 m-1">To: {flight.destination}</p>
-              <p className="p-2 m-1">Departure: {flight.departure}</p>
-              <p className="p-2 m-1">Arrival: {flight.arrival}</p>
-              <p className="p-2 m-1">Price: {flight.price}</p>
-              <div className="p-2 m-1">
-                <div className="flex items-center gap-2">
-                  <p>Seat: {flight.seat}</p>
-                  <SeatMenu
-                    setSeat={(seat: string) => setSeat(flight.key, seat)}
-                  />
+              <div className="flex flex-wrap">
+                <p className="p-2 m-1">From: {flight.origin}</p>
+                <p className="p-2 m-1">To: {flight.destination}</p>
+                <p className="p-2 m-1">Departure: {flight.departure}</p>
+                <p className="p-2 m-1">Arrival: {flight.arrival}</p>
+                <p className="p-2 m-1">Price: {flight.price}</p>
+                <div className="p-2 m-1">
+                  <div className="flex items-center gap-2">
+                    <p>Seat: {flight.seat}</p>
+                    <SeatMenu
+                      setSeat={(seat: string) => setSeat(flight.key, seat)}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center">
-                {props.user && (
-                  <FlightIcon flight={flight} onDeleteFlight={props.onDeleteFlight}/>
-                )}
-              </div>
+              {props.user && (
+                <div className="flex items-center ml-4">
+                  <FlightIcon
+                    flight={flight}
+                    onDeleteFlight={props.onDeleteFlight}
+                  />
+                </div>
+              )}
             </div>
           ))
         )}
