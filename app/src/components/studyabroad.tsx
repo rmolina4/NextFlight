@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 export default function StudyAbroad() {
-  const [programs, setPrograms] = useState<{ title: string; location: string; url: string }[]>([]);
+  const [programs, setPrograms] = useState<{ title: string; location: string; url: string; website: string}[]>([]);
     const router = useRouter();
 
   useEffect(() => {
@@ -34,6 +34,7 @@ export default function StudyAbroad() {
             title={program.title}
             location={program.location}
             url={program.url}
+            website={program.website}
           />
         ))}
       </div>

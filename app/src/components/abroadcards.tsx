@@ -4,17 +4,21 @@ type AbroadCardProps = {
   title: string;
   location: string;
   url: string;
+  website: string;
 };
 
-export default function AbroadCards({ title, location, url }: AbroadCardProps) {
+export default function AbroadCards({ title, location, url, website }: AbroadCardProps) {
   return (
-    <div className="flex justify-between items-center bg-white text-black p-2 rounded-xl shadow-md border w-[380px]">
+    <div className="flex justify-between items-center bg-white text-black p-2 rounded-xl shadow-md border w-[380px] hover:cursor-pointer"
+      onClick={() => {
+        window.open(website, "_blank", "noopener,noreferrer");
+      }}>
       <div>
         <h2 className="font-semibold text-md">{title}</h2>
         <p className="text-sm text-gray-600">{location}</p>
       </div>
 
-      <div className="flex space-x-2 items-center bg-[#F9EEEE];">
+      <div className="flex space-x-2 items-center bg-[#F9EEEE]">
         <Image
           src={url}
           alt={"Content Image"}
