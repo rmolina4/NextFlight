@@ -98,8 +98,8 @@ export default function Search() {
 
     setFlights(
       items.map((item: any, index: number) => ({
-        origin: `${item.legs[0].origin.name}, ${item.legs[0].origin.city}, ${item.legs[0].origin.country}`,
-        destination: `${item.legs[0].destination.name}, ${item.legs[0].destination.city}, ${item.legs[0].destination.country}`,
+        origin: `${item.legs[0].origin.name}, ${item.legs[0].origin.city}`,
+        destination: `${item.legs[0].destination.name}, ${item.legs[0].destination.city}`,
         departure: `${item.legs[0].departure}`,
         arrival: `${item.legs[item.legs.length - 1].arrival}`,
         price: `${item.price.formatted}`,

@@ -35,7 +35,7 @@ export default function Flights() {
             setFlights(flights.filter((flight) => flight.key !== key));
           }}
           user={session}
-          className="h-screen overflow-y-auto"
+          className="max-h-screen overflow-y-auto"
         />
       </Plane>
   );

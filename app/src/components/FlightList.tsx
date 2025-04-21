@@ -37,33 +37,33 @@ const FlightList = (props: FlightListProps) => {
   };
 
   return (
-    <div className={`flex flex-col items-center ${props.className}`}>
-      <div className="w-[800px]">
+    <div className={`flex flex-col items-center text-sm ${props.className}`}>
+      <div className="w-full max-w-screen-md px-2">
         <h1 className="text-xl font-bold pt-5">Results</h1>
       </div>
-      <div className="flex flex-col w-[820px] gap-8 p-2">
+      <div className="flex flex-col w-full max-w-3xl gap-8 px-2">
         {!props.flights || props.flights.length === 0 ? (
           <p className="text-white">No flights found.</p>
         ) : (
           props.flights.map((flight) => ( // We should probably make it so the flights property is NOT an object of an array of objects.
             <div
               key={flight.key}
-              className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white"
+              className="flex flex-wrap justify-center rounded-3xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white"
             >
-              <p className="grow p-2 m-1">From: {flight.origin}</p>
-              <p className="grow p-2 m-1">To: {flight.destination}</p>
-              <p className="grow p-2 m-1">Departure: {flight.departure}</p>
-              <p className="grow p-2 m-1">Arrival: {flight.arrival}</p>
-              <p className="grow p-2 m-1">Price: {flight.price}</p>
-              <div className="grow p-2 m-1">
-                <div className="flex items-center justify-center gap-2">
+              <p className="p-2 m-1">From: {flight.origin}</p>
+              <p className="p-2 m-1">To: {flight.destination}</p>
+              <p className="p-2 m-1">Departure: {flight.departure}</p>
+              <p className="p-2 m-1">Arrival: {flight.arrival}</p>
+              <p className="p-2 m-1">Price: {flight.price}</p>
+              <div className="p-2 m-1">
+                <div className="flex items-center gap-2">
                   <p>Seat: {flight.seat}</p>
                   <SeatMenu
                     setSeat={(seat: string) => setSeat(flight.key, seat)}
                   />
                 </div>
               </div>
-              <div className="flex items-center justify-center pr-4">
+              <div className="flex items-center">
                 {props.user && (
                   <FlightIcon flight={flight} onDeleteFlight={props.onDeleteFlight}/>
                 )}
