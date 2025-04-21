@@ -61,7 +61,7 @@ export default function Signup() {
               <input type="text" name="username" placeholder="Username" className="border p-2 rounded" />
               <input type="email" name="email" placeholder="Email" className="border p-2 rounded" />
               <input type="password" name="password" placeholder="Password" className="border p-2 rounded" />
-              <button type="submit" className="bg-blue-300 py-2 px-4 rounded-full hover:cursor-pointer">Login</button>
+              <button type="submit" className="bg-blue-300 py-2 px-4 rounded-full hover:cursor-pointer">Sign up</button>
             </form>
             <p className="mt-4 text-sm">Already have an account? <a href="/login" className="text-blue-500">Login</a></p>
           </div>
