@@ -27,9 +27,7 @@ export default function Flights() {
   }, [session]);
 
   return (
-    <div className="relative h-screen overflow-hidden">
-      <Plane />
-      <div className="absolute top-0 w-full h-full overflow-y-auto flex justify-center items-center">
+      <Plane>
         <FlightList
           setFlights={setFlights}
           flights={flights}
@@ -37,8 +35,8 @@ export default function Flights() {
             setFlights(flights.filter((flight) => flight.key !== key));
           }}
           user={session}
+          className="h-screen overflow-y-auto"
         />
-      </div>
-    </div>
+      </Plane>
   );
 }

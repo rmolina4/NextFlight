@@ -10,6 +10,7 @@ interface FlightListProps {
   onDeleteFlight?: (key: string) => void;
   setFlights: React.Dispatch<React.SetStateAction<Flight[]>>;
   user: Session | null;
+  className?: string;
 }
 
 const FlightList = (props: FlightListProps) => {
@@ -36,7 +37,7 @@ const FlightList = (props: FlightListProps) => {
   };
 
   return (
-    <div className={`flex flex-col items-center`}>
+    <div className={`flex flex-col items-center ${props.className}`}>
       <div className="w-[800px]">
         <h1 className="text-xl font-bold pt-5">Results</h1>
       </div>
