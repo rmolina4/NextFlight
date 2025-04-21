@@ -42,7 +42,7 @@ export default function NavBar() {
 
   return (
     <div className="flex w-full justify-between bg-white text-sm sm:text-base">
-      <h1 className="text-xl sm:text-2xl text-blue-500 my-2">NextFlight</h1>
+      <h1 className="text-xl sm:text-2xl text-blue-500 my-2 pl-2">NextFlight</h1>
       <div className="flex gap-4 items-center">
         {main.map((item) => (
           <Link
