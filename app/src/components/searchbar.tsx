@@ -2,6 +2,8 @@
 import { Icon } from "@iconify/react";
 import { Search } from "@/app/(main)/search/page";
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface SearchBarProps {
   handleSubmit: (user: Search) => void;
@@ -10,7 +12,7 @@ interface SearchBarProps {
 export default function SearchBar(prop: SearchBarProps) {
   const [fromInput, setFromInput] = useState("");
   const [toInput, setToInput] = useState("");
-  const [dateInput, setdateInput] = useState("");
+  const [dateInput, setdateInput] = useState<Date | null>(null);
 
   function handleFromChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFromInput(e.target.value);
@@ -20,9 +22,9 @@ export default function SearchBar(prop: SearchBarProps) {
     setToInput(e.target.value);
   }
 
-  function handleDepartureChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setdateInput(e.target.value);
-  }
+  //function handleDepartureChange(e: React.ChangeEvent<HTMLInputElement>) {
+  //  setdateInput(e.target.value);
+  //}
 
   return (
     <div className="grid grid-rows-2 justify-center">
@@ -46,13 +48,13 @@ export default function SearchBar(prop: SearchBarProps) {
           onChange={handleToChange}
           value={toInput}
         />
-        <input
-          type="text"
-          placeholder="Departure"
-          className="p-2 w-24"
-          onChange={handleDepartureChange}
-          value={dateInput}
-        />
+        <DatePicker 
+          selected={dateInput} 
+          onChange={(dateInput) => setdateInput(dateInput as Date)}
+          dateFormat="yyyy-MM-dd"
+          placeholderText="Departure"
+          className="mt-5 h-full text-center w-30"
+          />
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded m-2 hover:bg-blue-600 hover:cursor-pointer"
           type="submit"
@@ -61,11 +63,11 @@ export default function SearchBar(prop: SearchBarProps) {
             const newSearch = {
               from: fromInput,
               to: toInput,
-              date: dateInput,
+              date: dateInput ? dateInput.toISOString().split('T')[0] : "",
             };
             setFromInput('');
             setToInput('');
-            setdateInput('');
+            setdateInput(null);
             prop.handleSubmit(newSearch);
           }}
         >
