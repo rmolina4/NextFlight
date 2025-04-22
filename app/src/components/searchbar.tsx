@@ -40,6 +40,11 @@ export default function SearchBar(prop: SearchBarProps) {
         <Icon
           icon="proicons:arrow-swap"
           className="text-2xl mt-4 hover:cursor-pointer"
+          onClick={(e: React.MouseEvent<SVGSVGElement>) => {
+            const temp = fromInput;
+            setFromInput(toInput);
+            setToInput(fromInput);
+          }}
         />
         <input
           type="text"
@@ -48,13 +53,13 @@ export default function SearchBar(prop: SearchBarProps) {
           onChange={handleToChange}
           value={toInput}
         />
-        <DatePicker 
-          selected={dateInput} 
+        <DatePicker
+          selected={dateInput}
           onChange={(dateInput) => setdateInput(dateInput as Date)}
           dateFormat="yyyy-MM-dd"
           placeholderText="Departure"
-          className="mt-5 h-full text-center w-30"
-          />
+          className="mt-5 h-full text-center"
+        />
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded m-2 hover:bg-blue-600 hover:cursor-pointer"
           type="submit"
@@ -63,10 +68,10 @@ export default function SearchBar(prop: SearchBarProps) {
             const newSearch = {
               from: fromInput,
               to: toInput,
-              date: dateInput ? dateInput.toISOString().split('T')[0] : "",
+              date: dateInput ? dateInput.toISOString().split("T")[0] : "",
             };
-            setFromInput('');
-            setToInput('');
+            setFromInput("");
+            setToInput("");
             setdateInput(null);
             prop.handleSubmit(newSearch);
           }}
