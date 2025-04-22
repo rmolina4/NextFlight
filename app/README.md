@@ -34,3 +34,9 @@ To save a flight from the search results, click the plus (+) icon on the desired
 Seeing saved flights:
 Go to the Flights page to see any flights saved to your account.
 You can delete flights by clicking on the trash icon on the desired flight card.
+
+About the team:
+·   Steven Tran – Frontend API routes, UI Figma design
+·   Amir Cox – Authentication, Backend-API routes
+·   Roberto Molina - External API integration, Lead designer
+·   Matthew Basil – Front end components, documentation
