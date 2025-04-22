@@ -14,7 +14,7 @@ export default function AbroadCards({
   website,
 }: AbroadCardProps) {
   return (
-    <div className="flex justify-between items-center bg-white text-black p-2 rounded-xl shadow-md border w-[380px]">
+    <div className="flex justify-between items-center bg-white text-black p-2 rounded-xl shadow-md border">
       <div>
         <button
           className="font-semibold text-md text-left hover:cursor-pointer hover:text-blue-500"
@@ -24,10 +24,12 @@ export default function AbroadCards({
         >
           {title}
         </button>
-        <p className="text-sm text-gray-600">{location}</p>
+        <a className="text-sm text-gray-600 hover:cursor-pointer hover:text-blue-500" onClick={() => {
+          
+        }}>{location}</a>
       </div>
 
-      <div className="flex space-x-2 items-center bg-[#F9EEEE]">
+      <div className="flex space-x-2 items-center">
         <Image
           src={url}
           alt={"Content Image"}

@@ -23,11 +23,11 @@ export default function StudyAbroad() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-[800px]">
+    <div className="flex flex-col items-center justify-center w-3/4 max-w-3xl mx-auto">
+      <div className="w-full">
       <h1 className="text-xl font-bold pt-5">Study Abroad Programs</h1>
       </div>
-      <div className="w-[800px] grid grid-cols-2 gap-8 p-2">
+      <div className="w-full grid grid-cols-2 gap-8 p-2">
         {programs.map((program) => (
           <Abroadcards
             key={program.title}
