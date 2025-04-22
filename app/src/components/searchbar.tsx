@@ -13,6 +13,7 @@ export default function SearchBar(prop: SearchBarProps) {
   const [fromInput, setFromInput] = useState("");
   const [toInput, setToInput] = useState("");
   const [dateInput, setdateInput] = useState<Date | null>(null);
+  const [flipped, setFlipped] = useState(false);
 
   function handleFromChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFromInput(e.target.value);
@@ -21,10 +22,6 @@ export default function SearchBar(prop: SearchBarProps) {
   function handleToChange(e: React.ChangeEvent<HTMLInputElement>) {
     setToInput(e.target.value);
   }
-
-  //function handleDepartureChange(e: React.ChangeEvent<HTMLInputElement>) {
-  //  setdateInput(e.target.value);
-  //}
 
   return (
     <div className="grid grid-rows-2 justify-center">
@@ -39,8 +36,10 @@ export default function SearchBar(prop: SearchBarProps) {
         />
         <Icon
           icon="proicons:arrow-swap"
-          className="text-2xl mt-4 hover:cursor-pointer"
+          className={`text-2xl mt-4 hover:cursor-pointer  transition-transform duration-300 ${flipped ? "rotate-y-180" : ""}`}
+          
           onClick={(e: React.MouseEvent<SVGSVGElement>) => {
+            setFlipped(!flipped);
             const temp = fromInput;
             setFromInput(toInput);
             setToInput(fromInput);
