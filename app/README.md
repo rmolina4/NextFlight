@@ -1,3 +1,19 @@
+## About the team:
+·   Steven Tran – Frontend API routes, UI Figma design
+·   Amir Cox – Authentication, Backend-API routes
+·   Roberto Molina - External API integration, Lead designer
+·   Matthew Basil – Front end components, documentation
+
+## About this website:
+This website is used to find the cheapest flights for the given inputs.
+
+## Resources used:
+Tailwind CSS
+Next.js
+React
+React date picker
+Mongodb - For database management
+Sky Scanner API - For flight data
 
 ## Installation
 
@@ -21,10 +37,7 @@ $ npm run dev
 
 Then open http://localhost:3000 with your browser
 
-About this website:
-This website is used to find the cheapest flights for the given inputs.
-
-How to use it:
+## Usage and Features
 First, sign up or log in using the buttons on the top right of the screen.
 Then switch to the search page.
 Type in the desired departure and arrival locations, then click the departure form to select a date on the calendar for departure time.
@@ -34,9 +47,3 @@ To save a flight from the search results, click the plus (+) icon on the desired
 Seeing saved flights:
 Go to the Flights page to see any flights saved to your account.
 You can delete flights by clicking on the trash icon on the desired flight card.
-
-About the team:
-·   Steven Tran – Frontend API routes, UI Figma design
-·   Amir Cox – Authentication, Backend-API routes
-·   Roberto Molina - External API integration, Lead designer
-·   Matthew Basil – Front end components, documentation
