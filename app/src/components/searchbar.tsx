@@ -24,9 +24,11 @@ export default function SearchBar(prop: SearchBarProps) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-3/4 max-w-3xl mx-auto">
+      <div className="w-full">
       <h1 className="font-bold text-xl pt-5">Find Cheap Flights</h1>
-      <form className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] w-3/4 max-w-3xl">
+      </div>
+      <form className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] w-full">
         <input
           type="text"
           placeholder="From"
