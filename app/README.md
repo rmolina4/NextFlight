@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Installation
 
-First, run the development server:
+In root directory (app)
+$ npm install
+$ npm install tailwindcss @tailwindcss/vite
+$ npm install lightningcss
+$ npm install auth
+$ npm install react-datepicker
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Create a .env file in the root directory with the following content:
+MONGODB_URI="mongodb+srv://<mongodbusername>:<mongodbpassword>@cluster0.jngvkea.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+NEXT_PUBLIC_API_KEY="f1993c53ffmsh313277fdcf0b5e9p1227b6jsne4c573d29aba"
+NEXT_PUBLIC_HOST="skyscanner89.p.rapidapi.com"
+AUTH_SECRET="gi4NH9QtnrlD/M5k1jc73197YYtVmfRjTBvcJtKoE+w="
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running the Program
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+While still in root directory:
+$ npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Then open http://localhost:3000 with your browser
 
-## Learn More
+About this website:
+This website is used to find the cheapest flights for the given inputs.
 
-To learn more about Next.js, take a look at the following resources:
+How to use it:
+First, sign up or log in using the buttons on the top right of the screen.
+Then switch to the search page.
+Type in the desired departure and arrival locations, then click the departure form to select a date on the calendar for departure time.
+After all the inputs are filled out, click search.
+To save a flight from the search results, click the plus (+) icon on the desired flight card.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Seeing saved flights:
+Go to the Flights page to see any flights saved to your account.
+You can delete flights by clicking on the trash icon on the desired flight card.
