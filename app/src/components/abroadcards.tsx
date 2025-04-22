@@ -14,8 +14,8 @@ export default function AbroadCards({
   website,
 }: AbroadCardProps) {
   return (
-    <div className="flex justify-between items-center bg-white text-black p-2 rounded-xl shadow-md border">
-      <div>
+    <div className="flex justify-between items-center bg-white text-black p-2 rounded-xl shadow-md border w-full max-w-full">
+      <div className="flex flex-grow flex-col">
         <button
           className="font-semibold text-md text-left hover:cursor-pointer hover:text-blue-500"
           onClick={() => {
