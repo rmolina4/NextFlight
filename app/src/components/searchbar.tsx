@@ -24,13 +24,15 @@ export default function SearchBar(prop: SearchBarProps) {
   }
 
   return (
-    <div className="grid grid-rows-2 justify-center">
+    <div className="flex flex-col items-center justify-center w-3/4 max-w-3xl mx-auto">
+      <div className="w-full">
       <h1 className="font-bold text-xl pt-5">Find Cheap Flights</h1>
-      <form className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)]">
+      </div>
+      <form className="flex gap-2 rounded-xl flex shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] w-full">
         <input
           type="text"
           placeholder="From"
-          className="p-2 ml-0"
+          className="p-2 ml-0 flex-1 min-w-0"
           onChange={handleFromChange}
           value={fromInput}
         />
@@ -48,7 +50,7 @@ export default function SearchBar(prop: SearchBarProps) {
         <input
           type="text"
           placeholder="To"
-          className="p-2"
+          className="p-2 flex-1 min-w-0"
           onChange={handleToChange}
           value={toInput}
         />
@@ -57,10 +59,10 @@ export default function SearchBar(prop: SearchBarProps) {
           onChange={(dateInput) => setdateInput(dateInput as Date)}
           dateFormat="yyyy-MM-dd"
           placeholderText="Departure"
-          className="mt-5 h-full text-center"
+          className="w-[100px] mt-5 h-full text-center flex-1 min-w-0"
         />
         <button
-          className="bg-blue-500 text-white py-2 px-4 rounded m-2 hover:bg-blue-600 hover:cursor-pointer"
+          className="bg-blue-500 text-white py-2 px-4 rounded m-2 hover:bg-blue-600 hover:cursor-pointer w-20"
           type="submit"
           onClick={(e: React.FormEvent) => {
             e.preventDefault();
