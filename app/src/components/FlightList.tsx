@@ -37,13 +37,13 @@ const FlightList = (props: FlightListProps) => {
   };
 
   return (
-    <div className={`flex flex-col items-center text-sm ${props.className}`}>
+    <div className={`flex flex-col items-center text-sm ${props.className} max-h-100 overflow-y-auto overscroll-contain`}>
       <div className="w-full max-w-screen-md px-2">
         <h1 className="text-xl font-bold pt-5">Results</h1>
       </div>
       <div className="flex flex-col w-full max-w-[48rem] gap-8 px-2">
         {!props.flights || props.flights.length === 0 ? (
-          <p className="text-white">No flights found.</p>
+          <p className="text-black">No flights found.</p>
         ) : (
           props.flights.map((flight) => (
             <div
@@ -51,14 +51,14 @@ const FlightList = (props: FlightListProps) => {
               className="flex justify-between items-center rounded-3xl shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white px-4"
             >
               <div className="flex flex-wrap">
-                <p className="p-2 m-1">From: {flight.origin}</p>
-                <p className="p-2 m-1">To: {flight.destination}</p>
-                <p className="p-2 m-1">Departure: {flight.departure}</p>
-                <p className="p-2 m-1">Arrival: {flight.arrival}</p>
-                <p className="p-2 m-1">Price: {flight.price}</p>
+                <p className="p-2 m-1"><strong>From:</strong> {flight.origin}</p>
+                <p className="p-2 m-1"><strong>To:</strong> {flight.destination}</p>
+                <p className="p-2 m-1"><strong>Departure:</strong> {flight.departure}</p>
+                <p className="p-2 m-1"><strong>Arrival:</strong> {flight.arrival}</p>
+                <p className="p-2 m-1"><strong>Price:</strong> {flight.price}</p>
                 <div className="p-2 m-1">
                   <div className="flex items-center gap-2">
-                    <p>Seat: {flight.seat}</p>
+                    <p><strong>Seat:</strong> {flight.seat}</p>
                     <SeatMenu
                       setSeat={(seat: string) => setSeat(flight.key, seat)}
                     />

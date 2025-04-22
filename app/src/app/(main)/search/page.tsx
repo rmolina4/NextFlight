@@ -28,6 +28,11 @@ export default function Search() {
   const { data: session } = useSession();
   const router = useRouter();
 
+  const [fromInput, setFromInput] = useState("");
+  const [toInput, setToInput] = useState("");
+  const [dateInput, setDateInput] = useState<Date | null>(null);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
   const handleSubmit = async (search: Search) => {
     const ac_url = "https://skyscanner89.p.rapidapi.com/flights/auto-complete";
     const ow_url = "https://skyscanner89.p.rapidapi.com/flights/one-way/list";
@@ -91,6 +96,11 @@ export default function Search() {
       router.push("/500");
       return;
     }
+    const buckets = data.data.itineraries.buckets;
+    if(buckets.length === 0) {
+      setFlights([]);
+      return;
+    }
     const items = [
       ...data.data.itineraries.buckets[0].items,
       ...data.data.itineraries.buckets[1].items,
@@ -112,15 +122,24 @@ export default function Search() {
   return (
     <div>
       <Plane />
-      <SearchBar handleSubmit={handleSubmit} />
-      {flights.length != 0 && (
-        <FlightList
-          flights={flights}
-          setFlights={setFlights}
-          user={session}
-        />
+      <SearchBar
+        toInput={toInput}
+        fromInput={fromInput}
+        dateInput={dateInput}
+        setFromInput={setFromInput}
+        setToInput={setToInput}
+        setDateInput={setDateInput}
+        handleSubmit={handleSubmit}
+        setIsVisible={setIsVisible}
+      />
+      {isVisible && (
+        <FlightList flights={flights} setFlights={setFlights} user={session} />
       )}
-      <StudyAbroad />
+      <StudyAbroad
+        setToInput={setToInput}
+        setFromInput={setFromInput}
+        setDateInput={setDateInput}
+      />
     </div>
   );
 }

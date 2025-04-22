@@ -46,7 +46,3 @@ export default function Login() {
     </div>
   );
 }
-
-function setError(err: any) {
-  throw new Error(err);
-}

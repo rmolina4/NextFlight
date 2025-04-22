@@ -4,7 +4,13 @@ import Abroadcards from "./abroadcards";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function StudyAbroad() {
+interface StudyAbroadProps {
+  setFromInput: (from: string) => void;
+  setToInput: (to: string) => void;
+  setDateInput: (date: Date | null) => void;
+}
+
+export default function StudyAbroad(props: StudyAbroadProps) {
   const [programs, setPrograms] = useState<{ title: string; location: string; url: string; website: string}[]>([]);
     const router = useRouter();
 
@@ -35,6 +41,9 @@ export default function StudyAbroad() {
             location={program.location}
             url={program.url}
             website={program.website}
+            setFromInput={props.setFromInput}
+            setToInput={props.setToInput}
+            setDateInput={props.setDateInput}
           />
         ))}
       </div>
