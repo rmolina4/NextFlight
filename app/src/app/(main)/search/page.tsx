@@ -23,6 +23,24 @@ export interface Search {
   date: string;
 }
 
+interface FlightLeg {
+  origin: {
+    name: string;
+    city: string;
+  };
+  destination: {
+    name: string;
+    city: string;
+  };
+  departure: string;
+  arrival: string;
+}
+
+interface FlightItem {
+  legs: FlightLeg[];
+  price: {formatted: string;}
+}
+
 export default function Search() {
   const [flights, setFlights] = useState<Flight[]>([]);
   const { data: session } = useSession();
@@ -107,7 +125,7 @@ export default function Search() {
     ];
 
     setFlights(
-      items.map((item: any, index: number) => ({
+      items.map((item: FlightItem, index: number) => ({
         origin: `${item.legs[0].origin.name}, ${item.legs[0].origin.city}`,
         destination: `${item.legs[0].destination.name}, ${item.legs[0].destination.city}`,
         departure: `${item.legs[0].departure}`,
@@ -133,7 +151,7 @@ export default function Search() {
         setIsVisible={setIsVisible}
       />
       {isVisible && (
-        <FlightList flights={flights} setFlights={setFlights} user={session} />
+        <FlightList flights={flights} setFlights={setFlights} user={session} className={"min-h-100 max-h-100 overflow-y-auto overscroll-contain"} />
       )}
       <StudyAbroad
         setToInput={setToInput}

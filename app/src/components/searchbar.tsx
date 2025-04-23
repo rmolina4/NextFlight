@@ -18,7 +18,7 @@ interface SearchBarProps {
 
 export default function SearchBar(props: SearchBarProps) {
   const [flipped, setFlipped] = useState(false);
-  const [error, setError] = useState<String | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   function handleFromChange(e: React.ChangeEvent<HTMLInputElement>) {
     props.setFromInput(e.target.value);
@@ -46,11 +46,11 @@ export default function SearchBar(props: SearchBarProps) {
           className={`text-2xl mt-4 hover:cursor-pointer  transition-transform duration-300 ${
             flipped ? "rotate-y-180" : ""
           }`}
-          onClick={(e: React.MouseEvent<SVGSVGElement>) => {
+          onClick={() => {
             setFlipped(!flipped);
             const temp = props.fromInput;
             props.setFromInput(props.toInput);
-            props.setToInput(props.fromInput);
+            props.setToInput(temp);
           }}
         />
         <input

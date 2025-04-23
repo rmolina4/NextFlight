@@ -13,7 +13,7 @@ export default function SeatMenu(props: SeatMenuProps) {
   return (
     <div className="relative">
       <button
-        onClick={(e: any) => {
+        onClick={() => {
           setIsVisible(!isVisible);
         }}
       >

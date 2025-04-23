@@ -1,17 +1,15 @@
 import connectMongoDB from "@/libs/mongodb";
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/userSchema";
-import mongoose from "mongoose";
 import { auth } from "@/app/auth";
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params } : { params: Promise<{ id: string }>  }
 ) {
   // Handle PUT requests
   try {
-    const { id: flightId } = await params;
+    const {id: flightId} = await params;
     const { seat } = await request.json();
     await connectMongoDB();
     const session = await auth();
@@ -34,7 +32,6 @@ export async function PUT(
       { status: 200 }
     );
   } catch (error) {
-    console.error(error);
     return NextResponse.json(
       { message: "Failed to update", error },
       { status: 500 }
@@ -42,13 +39,11 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
+export async function DELETE( request: NextRequest, { params } : { params: Promise<{ id: string }> }
 ) {
   // Handle POST requests
   try {
-    const { id: flightId } = await params;
+    const {id: flightId} = await params;
     await connectMongoDB();
     const session = await auth();
     if (!session) {

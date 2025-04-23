@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
-import { Flight } from "@/app/(main)/search/page";
 
 export interface IProgram extends Document {
   title: string;

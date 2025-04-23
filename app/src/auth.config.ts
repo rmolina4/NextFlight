@@ -5,7 +5,7 @@ export const authConfig: NextAuthConfig = {
     strategy: "jwt",
   },
   providers: [],
-
+  trustHost: true,
   callbacks: {
     async jwt({ token, user }) {
       if (user) {

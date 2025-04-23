@@ -6,7 +6,7 @@ export async function doLogout () {
     await signOut({ redirectTo: "/" });
 }
 
-export async function doCredentialLogin (formData: FormData) : Promise<any> {
+export async function doCredentialLogin (formData: FormData) : Promise<unknown> {
 
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
@@ -18,7 +18,11 @@ export async function doCredentialLogin (formData: FormData) : Promise<any> {
             redirect: false,
         });
         return response;
-    } catch (err : any) {
-        return {error: { message: err.message || "Login failed." } };
+    } catch (err : unknown) {
+        if (err instanceof Error) {
+            return {error: { message: err.message } };
+        } else {
+            return {error: { message: "Login failed." } };
+        }
     }
 }

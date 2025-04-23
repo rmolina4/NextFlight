@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 import { auth } from "@/app/auth";
 import User from "@/models/userSchema";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   // Handle GET requests
   try {
     await connectMongoDB();

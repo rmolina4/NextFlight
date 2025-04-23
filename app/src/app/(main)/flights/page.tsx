@@ -24,7 +24,7 @@ export default function Flights() {
     } else {
       fetchFlights();
     }
-  }, [session]);
+  }, [router, session]);
 
   return (
       <Plane>
@@ -35,7 +35,7 @@ export default function Flights() {
             setFlights(flights.filter((flight) => flight.key !== key));
           }}
           user={session}
-          className="max-h-screen overflow-y-auto"
+          className="min-h-screen overflow-y-auto"
         />
       </Plane>
   );

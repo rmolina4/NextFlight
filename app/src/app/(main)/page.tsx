@@ -38,7 +38,7 @@ export default function Home() {
             <Icon icon="tabler:user" className="text-2xl sm:text-3xl pb-1" />
           </div>
           <h3>
-            We're proud to have helped countless travelers find the most
+            We&apos;re proud to have helped countless travelers find the most
             affordable flights.
           </h3>
         </div>

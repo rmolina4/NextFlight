@@ -37,7 +37,7 @@ const FlightList = (props: FlightListProps) => {
   };
 
   return (
-    <div className={`flex flex-col items-center text-sm ${props.className} max-h-100 overflow-y-auto overscroll-contain`}>
+    <div className={`flex flex-col items-center text-sm ${props.className}`}>
       <div className="w-full max-w-screen-md px-2">
         <h1 className="text-xl font-bold pt-5">Results</h1>
       </div>

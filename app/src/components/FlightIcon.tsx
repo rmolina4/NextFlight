@@ -15,21 +15,27 @@ const FlightIcon = (props: FlightIconProps) => {
 
   return (
     <Icon
-      icon={pathname === "/flights" ? "tabler:trash" : isClicked ? "tabler:check" : "tabler:plus"}
+      icon={
+        pathname === "/flights"
+          ? "tabler:trash"
+          : isClicked
+          ? "tabler:check"
+          : "tabler:plus"
+      }
       className="text-2xl hover:cursor-pointer"
       onClick={async () => {
         if (pathname === "/flights") {
           // delete flight
-          const res = await fetch(`/api/flights/${props.flight.key}`, {
+          await fetch(`/api/flights/${props.flight.key}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
             },
           });
-          props.onDeleteFlight && props.onDeleteFlight(props.flight.key);
-        } else if (!isClicked){
+          if (props.onDeleteFlight) props.onDeleteFlight(props.flight.key);
+        } else if (!isClicked) {
           // add new flight
-          const res = await fetch(`/api/flights`, {
+          await fetch(`/api/flights`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

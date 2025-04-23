@@ -20,13 +20,13 @@ export default function StudyAbroad(props: StudyAbroadProps) {
         const res = await fetch("http://localhost:3000/api/study-abroad");
         const data = await res.json();
         setPrograms(data.programs);
-      } catch (error) {
+      } catch {
         router.push("/500");
       }
     };
 
     fetchPrograms();
-  }, []);
+  }, [router]);
 
   return (
     <div className="flex flex-col items-center justify-center w-3/4 max-w-3xl mx-auto">

@@ -1,7 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState,} from "react";
 import { useRouter } from "next/navigation";
 import { doCredentialLogin } from "../../actions/index";
+import Link from "next/link";
 
 export default function Login() {
   const router = useRouter();
@@ -11,25 +12,27 @@ export default function Login() {
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget);
-      const username = formData.get("username") as string | null;
-      const password = formData.get("password") as string | null;
 
       const response = await doCredentialLogin(formData);
 
-      if (response?.error) {
+      if (response instanceof Error) {
         setError("Login Failed. Please use valid credentials.");
       } else {
         router.push("/");
       }
-    } catch (e: any) {
-      setError(e.message || "An error occurred");
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError("An unknown error occurred");
+      }
     }
   };
   
   return (
     <div className="min-h-screen flex flex-col">
       <h1 className="text-2xl text-blue-500 absolute top-0 left-0 p-2 mt-1">
-        <a href="/">NextFlight</a>
+        <Link href="/">NextFlight</Link>
       </h1>
       <div className="flex-1 flex justify-center items-center">
         <div className="flex flex-col justify-center items-center border border-gray-200 p-5 rounded-lg shadow-md">
@@ -40,7 +43,7 @@ export default function Login() {
             <button type="submit" className="bg-blue-300 py-2 px-4 rounded-full hover:cursor-pointer">Login</button>
           </form>
           {error && <p className="text-red-500 mt-4 text-sm">{error}</p>}
-          <p className="mt-4 text-sm">Don't have an account? <a href="/signup" className="text-blue-500">Signup</a></p>
+          <p className="mt-4 text-sm">Don&apos;t have an account? <a href="/signup" className="text-blue-500">Signup</a></p>
         </div>
       </div>
     </div>
