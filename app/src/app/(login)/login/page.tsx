@@ -15,17 +15,13 @@ export default function Login() {
 
       const response = await doCredentialLogin(formData);
 
-      if (response instanceof Error) {
+      if(response?.error){
         setError("Login Failed. Please use valid credentials.");
       } else {
         router.push("/");
       }
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        setError(e.message);
-      } else {
-        setError("An unknown error occurred");
-      }
+    } catch (e: any) {
+      setError(e.message || "An unknown error occurred");
     }
   };
   

@@ -44,12 +44,8 @@ export default function Signup() {
         await doCredentialLogin(loginFormData);
         setIsLoggedIn(true);
       }
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        setError(e.message);
-      } else {
-        setError("An unknown error occurred");
-      }
+    } catch (e: any) {
+      setError(e.message || "An unknown error occurred");
     }
   }
 

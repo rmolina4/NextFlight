@@ -45,7 +45,7 @@ export const {
                         console.log( "User not found" );
                         return null;
                     }
-                } catch (error: unknown) {
+                } catch (error: any) {
                     console.log( "An error occurred: ", error );
                     return null;
                 }

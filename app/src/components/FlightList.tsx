@@ -4,6 +4,7 @@ import SeatMenu from "./seatMenu";
 import { Session } from "next-auth";
 import { redirect, usePathname } from "next/navigation";
 import FlightIcon from "./FlightIcon";
+import FlightCard from "./FlightCard";
 
 interface FlightListProps {
   flights: Flight[];
@@ -46,9 +47,8 @@ const FlightList = (props: FlightListProps) => {
           <p className="text-black">No flights found.</p>
         ) : (
           props.flights.map((flight) => (
-            <div
+            <FlightCard
               key={flight.key}
-              className="flex justify-between items-center rounded-3xl shadow-[0_0_10px_0px_rgba(0,0,0,0.1)] bg-white px-4"
             >
               <div className="flex flex-wrap">
                 <p className="p-2 m-1"><strong>From:</strong> {flight.origin}</p>
@@ -73,7 +73,7 @@ const FlightList = (props: FlightListProps) => {
                   />
                 </div>
               )}
-            </div>
+            </FlightCard>
           ))
         )}
       </div>
