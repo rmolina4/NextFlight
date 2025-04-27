@@ -38,7 +38,7 @@ interface FlightLeg {
 
 interface FlightItem {
   legs: FlightLeg[];
-  price: {formatted: string;}
+  price: { formatted: string };
 }
 
 export default function Search() {
@@ -52,20 +52,17 @@ export default function Search() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const handleSubmit = async (search: Search) => {
-    const ac_url = "https://skyscanner89.p.rapidapi.com/flights/auto-complete";
-    const ow_url = "https://skyscanner89.p.rapidapi.com/flights/one-way/list";
+    const airport_url = "https://www.goflightlabs.com/retrieveAirport";
+    const flight_url = "https://www.goflightlabs.com/retrieveFlights";
     const options = {
       method: "GET",
-      headers: {
-        "x-rapidapi-key": `${process.env.NEXT_PUBLIC_API_KEY}`,
-        "x-rapidapi-host": `${process.env.NEXT_PUBLIC_HOST}`,
-      },
     };
 
     let params = new URLSearchParams({
+      access_key: `${process.env.NEXT_PUBLIC_API_KEY}`,
       query: `${search.from}`,
     });
-    let url = `${ac_url}?${params.toString()}`;
+    let url = `${airport_url}?${params.toString()}`;
     let res = await fetch(url, options);
     if (!res.ok) {
       router.push("/500");
@@ -76,13 +73,14 @@ export default function Search() {
       router.push("/500");
       return;
     }
-    const relevantFlightParamsFrom =
-      data.inputSuggest[0].navigation.relevantFlightParams;
+    console.log(data);
+    const relevantFlightParamsFrom = data[0];
 
     params = new URLSearchParams({
+      access_key: `${process.env.NEXT_PUBLIC_API_KEY}`,
       query: `${search.to}`,
     });
-    url = `${ac_url}?${params.toString()}`;
+    url = `${airport_url}?${params.toString()}`;
     res = await fetch(url, options);
     if (!res.ok) {
       router.push("/500");
@@ -93,17 +91,18 @@ export default function Search() {
       router.push("/500");
       return;
     }
-    const relevantFlightParamsTo =
-      data.inputSuggest[0].navigation.relevantFlightParams;
+    console.log(data);
+    const relevantFlightParamsTo = data[0];
 
     params = new URLSearchParams({
+      access_key: `${process.env.NEXT_PUBLIC_API_KEY}`,
+      originSkyId: `${relevantFlightParamsFrom.skyId}`,
+      destinationSkyId: `${relevantFlightParamsTo.skyId}`,
+      originEntityId: `${relevantFlightParamsFrom.entityId}`,
+      destinationEntityId: `${relevantFlightParamsTo.entityId}`,
       date: `${search.date}`,
-      origin: `${relevantFlightParamsFrom.skyId}`,
-      originId: `${relevantFlightParamsFrom.entityId}`,
-      destination: `${relevantFlightParamsTo.skyId}`,
-      destinationId: `${relevantFlightParamsTo.entityId}`,
     });
-    url = `${ow_url}?${params.toString()}`;
+    url = `${flight_url}?${params.toString()}`;
     res = await fetch(url, options);
     if (!res.ok) {
       router.push("/500");
@@ -114,15 +113,15 @@ export default function Search() {
       router.push("/500");
       return;
     }
-    const buckets = data.data.itineraries.buckets;
-    if(buckets.length === 0) {
+    if(!data.itineraries) {
       setFlights([]);
       return;
     }
-    const items = [
-      ...data.data.itineraries.buckets[0].items,
-      ...data.data.itineraries.buckets[1].items,
-    ];
+    const items = data.itineraries;
+    if (items.length === 0) {
+      setFlights([]);
+      return;
+    }
 
     setFlights(
       items.map((item: FlightItem, index: number) => ({
@@ -151,7 +150,12 @@ export default function Search() {
         setIsVisible={setIsVisible}
       />
       {isVisible && (
-        <FlightList flights={flights} setFlights={setFlights} user={session} className={"min-h-100 max-h-100 overflow-y-auto overscroll-contain"} />
+        <FlightList
+          flights={flights}
+          setFlights={setFlights}
+          user={session}
+          className={"min-h-100 max-h-100 overflow-y-auto overscroll-contain"}
+        />
       )}
       <StudyAbroad
         setToInput={setToInput}
